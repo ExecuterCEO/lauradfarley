@@ -77,30 +77,138 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold transition shadow-md;
-    background: var(--platinum-metal);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold transition;
     color: var(--navy-deep);
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    /* Faceted diamond / gem body */
+    background:
+      linear-gradient(115deg, transparent 0%, transparent 42%, rgba(255, 255, 255, 0.9) 49.5%, transparent 57%, transparent 100%),
+      linear-gradient(155deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.45) 48%, transparent 62%),
+      linear-gradient(35deg, #7a8490 0%, #aeb6c0 18%, #f7f9fb 36%, #d5dbe3 52%, #8e97a2 72%, #cfd5dd 88%, #f3f5f8 100%),
+      linear-gradient(180deg, #eef2f6 0%, #b4bcc6 55%, #8b949e 100%);
+    background-size: 220% 220%, 180% 180%, 100% 100%, 100% 100%;
+    background-position: 30% 40%, 60% 30%, center, center;
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.65) inset,
-      0 8px 20px rgba(15, 44, 76, 0.18);
+      0 1px 0 rgba(255, 255, 255, 0.95) inset,
+      0 -1px 0 rgba(90, 100, 112, 0.35) inset,
+      0 0 0 1px rgba(155, 165, 176, 0.45) inset,
+      0 10px 28px rgba(15, 44, 76, 0.28),
+      0 2px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  /* Crystal edge gleam */
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+      linear-gradient(105deg, transparent 0%, transparent 38%, rgba(255, 255, 255, 0.95) 50%, transparent 62%, transparent 100%);
+    background-size: 220% 100%;
+    background-position: 120% 0;
+    animation: gem-shine 3.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Sparkle flecks */
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.9;
+    background:
+      radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 1) 0 1.1px, transparent 1.8px),
+      radial-gradient(circle at 72% 28%, rgba(255, 255, 255, 0.95) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 58% 68%, rgba(255, 255, 255, 0.9) 0 1.2px, transparent 2px),
+      radial-gradient(circle at 34% 74%, rgba(230, 240, 255, 0.95) 0 0.9px, transparent 1.6px),
+      radial-gradient(circle at 84% 58%, rgba(255, 255, 255, 1) 0 1px, transparent 1.8px),
+      radial-gradient(circle at 46% 22%, rgba(200, 220, 255, 0.9) 0 0.8px, transparent 1.5px);
+    animation: gem-sparkle 2.4s ease-in-out infinite;
   }
 
   .btn-primary:hover {
-    filter: brightness(1.05);
-    background: linear-gradient(145deg, #ffffff 0%, #d5dae0 40%, #a8b0b9 80%, #eef1f4 100%);
+    transform: translateY(-1px);
+    filter: saturate(1.05) brightness(1.04);
+    background-position: 55% 45%, 40% 50%, center, center;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 1) inset,
+      0 -1px 0 rgba(90, 100, 112, 0.3) inset,
+      0 0 0 1px rgba(180, 190, 205, 0.55) inset,
+      0 14px 34px rgba(15, 44, 76, 0.34),
+      0 0 18px rgba(200, 220, 255, 0.35);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    filter: brightness(0.98);
+  }
+
+  @keyframes gem-shine {
+    0%,
+    55% {
+      background-position: 130% 0;
+      opacity: 0;
+    }
+    60% {
+      opacity: 1;
+    }
+    78% {
+      background-position: -30% 0;
+      opacity: 0.85;
+    }
+    100% {
+      background-position: -30% 0;
+      opacity: 0;
+    }
+  }
+
+  @keyframes gem-sparkle {
+    0%,
+    100% {
+      opacity: 0.55;
+      filter: brightness(1);
+    }
+    40% {
+      opacity: 1;
+      filter: brightness(1.25);
+    }
+    70% {
+      opacity: 0.7;
+      filter: brightness(1.05);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary::before,
+    .btn-primary::after {
+      animation: none;
+    }
+    .btn-primary:hover {
+      transform: none;
+    }
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold transition;
-    border: 1px solid rgba(197, 204, 212, 0.55);
+    border: 1px solid rgba(220, 228, 238, 0.65);
     color: #f3f5f7;
-    background: rgba(197, 204, 212, 0.08);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(197, 204, 212, 0.08) 45%, rgba(255, 255, 255, 0.05) 100%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
   }
 
   .btn-secondary:hover {
-    background: rgba(197, 204, 212, 0.18);
-    border-color: rgba(232, 236, 240, 0.75);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.22) 0%, rgba(197, 204, 212, 0.14) 50%, rgba(255, 255, 255, 0.08) 100%);
+    border-color: rgba(232, 236, 240, 0.85);
   }
 
   .btn-outline {
