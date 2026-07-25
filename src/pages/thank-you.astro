@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import site from '../data/site.json';
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<Layout title="Thank you" description="Thanks for contacting Laura D. Farley. Your message was received.">
+  <Navbar />
+  <main class="max-w-2xl mx-auto px-5 sm:px-6 py-20 text-center">
+    <div class="text-[var(--gold)] text-sm font-semibold uppercase tracking-wide mb-3">Message received</div>
+    <h1 class="font-serif text-4xl sm:text-5xl text-[var(--navy)] mb-4">Thank you</h1>
+    <p class="text-lg text-stone-600 leading-relaxed">
+      Your inquiry is in. I’ll follow up as soon as I can — usually within one business day.
+      If your matter is time-sensitive, call or text
+      <a class="font-semibold text-[var(--navy)] underline" href={`tel:${phoneTel}`}>{site.phone}</a>.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn-primary">Back to home</a>
+      <a href="/sell#valuation" class="btn-outline">Home valuation</a>
+    </div>
+  </main>
+</Layout>

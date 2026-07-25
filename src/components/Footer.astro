@@ -1,0 +1,57 @@
+---
+import site from '../data/site.json';
+const year = new Date().getFullYear();
+const years = year - site.licensedSince;
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<footer class="bg-[var(--navy-deep)] text-stone-300 mt-20">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 py-14">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-2">
+        <div class="font-serif text-2xl text-white mb-3">{site.name}</div>
+        <p class="text-sm leading-relaxed max-w-md">
+          {site.title} with {site.brokerage}. Serving buyers and sellers across {site.markets.join(', ')}.
+          Licensed REALTOR® since {site.licensedSince} ({years}+ years).
+        </p>
+        <div class="mt-5 space-y-1 text-sm">
+          <a class="block hover:text-white" href={`tel:${phoneTel}`}>{site.phone}</a>
+          <a class="block hover:text-white" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-white font-medium mb-4">Explore</div>
+        <div class="space-y-2 text-sm">
+          <a href="/sell" class="block hover:text-white">Sell your home</a>
+          <a href="/buy" class="block hover:text-white">Buy a home</a>
+          <a href="/areas" class="block hover:text-white">Areas served</a>
+          <a href="/about" class="block hover:text-white">About Laura</a>
+          <a href="/contact" class="block hover:text-white">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-white font-medium mb-4">Legal</div>
+        <div class="space-y-2 text-sm">
+          <a href="/privacy" class="block hover:text-white">Privacy Policy</a>
+          <a href="/terms" class="block hover:text-white">Terms of Use</a>
+          <p class="pt-3 text-stone-500 text-xs leading-relaxed">
+            Equal Housing Opportunity. Each office is independently owned and operated.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 mt-12 pt-8 text-xs text-stone-500 space-y-3">
+      <p>
+        © {year} {site.name}. All rights reserved.
+        {site.name}, {site.title}, DRE# {site.dre}, {site.brokerage}.
+      </p>
+      <p>
+        This site is for general real estate information and lead inquiries only. It is not a solicitation if your
+        property is currently listed with another broker. Information deemed reliable but not guaranteed.
+      </p>
+    </div>
+  </div>
+</footer>

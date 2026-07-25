@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import areas from '../../data/areas.json';
+import site from '../../data/site.json';
+
+export function getStaticPaths() {
+  return areas.map((area) => ({
+    params: { slug: area.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+---
+
+<Layout
+  title={`${area.name} Real Estate`}
+  description={`${area.name} homes — buy or sell with Laura D. Farley, Broker Associate, eXp Realty. ${area.blurb} DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main>
+    <section class="bg-[var(--navy)] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6 py-14">
+        <a href="/areas" class="text-white/70 text-sm hover:text-white">← All areas</a>
+        <p class="text-[var(--gold-soft)] text-sm font-medium uppercase tracking-wide mt-4">{area.region}</p>
+        <h1 class="font-serif text-4xl sm:text-5xl mt-2">{area.name} real estate</h1>
+        <p class="mt-5 text-lg text-white/85 max-w-3xl">{area.blurb}</p>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-6 py-14 grid lg:grid-cols-2 gap-12">
+      <div class="space-y-8">
+        <div class="rounded-3xl border border-stone-200 bg-white p-7">
+          <h2 class="font-serif text-2xl text-[var(--navy)] mb-3">For buyers in {area.name}</h2>
+          <p class="text-stone-600 leading-relaxed">{area.buyerAngle}</p>
+          <a href="/buy" class="inline-block mt-4 font-semibold text-[var(--navy)] hover:underline">Buyer consult →</a>
+        </div>
+        <div class="rounded-3xl border border-stone-200 bg-white p-7">
+          <h2 class="font-serif text-2xl text-[var(--navy)] mb-3">For sellers in {area.name}</h2>
+          <p class="text-stone-600 leading-relaxed">{area.sellerAngle}</p>
+          <a href="/sell#valuation" class="inline-block mt-4 font-semibold text-[var(--navy)] hover:underline">Free home valuation →</a>
+        </div>
+        <p class="text-sm text-stone-500">
+          Working with {site.name}, {site.title}, {site.brokerage}, DRE# {site.dre}.
+        </p>
+      </div>
+      <LeadForm
+        formName={`area-${area.slug}`}
+        heading={`Talk ${area.name} real estate`}
+        subheading="Buying, selling, or curious about values — send a note and I’ll follow up."
+        submitLabel="Send message"
+        intentDefault="general"
+        showPropertyFields={true}
+      />
+    </section>
+  </main>
+</Layout>

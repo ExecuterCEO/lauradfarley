@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "temecula",
+    "name": "Temecula",
+    "region": "Southwest Riverside County",
+    "blurb": "Wine country living, master-planned neighborhoods, strong schools, and a lifestyle draw that keeps buyer demand resilient year-round.",
+    "buyerAngle": "Compare Pechanga-area estates, older charmers, and newer tracts — inventory and HOA rules vary block by block.",
+    "sellerAngle": "Presentation and pricing against active comps matter here. Lifestyle photos and timing around seasonal demand help maximize exposure."
+  },
+  {
+    "slug": "murrieta",
+    "name": "Murrieta",
+    "region": "Southwest Riverside County",
+    "blurb": "Family-oriented communities, parks, and freeway access — a frequent choice for buyers who want space without losing convenience.",
+    "buyerAngle": "Focus on school boundaries, lot size, and commute patterns toward OC and San Diego corridors.",
+    "sellerAngle": "Clean condition and competitive pricing win in Murrieta. Strategic prep often beats sitting on market."
+  },
+  {
+    "slug": "orange-county",
+    "name": "Orange County",
+    "region": "Orange County",
+    "blurb": "Coastal-adjacent and inland OC markets with diverse price points — from first move-up homes to established neighborhood estates.",
+    "buyerAngle": "Competition can be sharp. Pre-approval, offer strategy, and local nuance separate winning bids from also-rans.",
+    "sellerAngle": "OC buyers are informed. Pricing, staging, and professional marketing protect your equity."
+  },
+  {
+    "slug": "menifee",
+    "name": "Menifee",
+    "region": "Southwest Riverside County",
+    "blurb": "Growth corridor with newer construction and relative value versus coastal counties — popular with relocating buyers.",
+    "buyerAngle": "Watch builder incentives vs resale value, Mello-Roos, and long-term neighborhood trajectory.",
+    "sellerAngle": "Newer inventory means differentiation: condition, upgrades, and smart list price."
+  }
+]

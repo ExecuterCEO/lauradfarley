@@ -1,0 +1,94 @@
+---
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = `${site.name} — ${site.title} with ${site.brokerage}. Helping buyers and sellers from Temecula to Orange County since ${site.licensedSince}. DRE# ${site.dre}.`,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
+const years = new Date().getFullYear() - site.licensedSince;
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={`${title} | ${site.name}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(site.headshot, site.siteUrl).toString()} />
+    <meta name="theme-color" content="#0F2C4C" />
+    <title>{title} | {site.name}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-stone-50 text-stone-900 antialiased">
+    <div class="bg-[var(--navy)] text-white/90 text-xs sm:text-sm text-center px-4 py-2">
+      Call or text <a class="underline font-medium hover:text-white" href={`tel:${phoneTel}`}>{site.phone}</a>
+      <span class="mx-1.5 opacity-50">·</span>
+      <span>{site.brokerage}</span>
+      <span class="mx-1.5 opacity-50">·</span>
+      <span>DRE# {site.dre}</span>
+    </div>
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  @import "tailwindcss";
+
+  :root {
+    --navy: #0f2c4c;
+    --navy-deep: #0a1f36;
+    --gold: #c4a35a;
+    --gold-soft: #e8d5a3;
+    --ink: #1c1917;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "DM Sans", system-ui, sans-serif;
+  }
+
+  .font-serif {
+    font-family: "Libre Baskerville", Georgia, serif;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-[var(--gold)] text-[var(--navy-deep)] font-semibold hover:bg-[var(--gold-soft)] transition shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-stone-300 text-stone-800 font-semibold hover:border-[var(--navy)] hover:text-[var(--navy)] transition bg-white;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/50 focus:border-[var(--gold)];
+  }
+
+  .label {
+    @apply block text-sm font-medium text-stone-700 mb-1.5;
+  }
+</style>

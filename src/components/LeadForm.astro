@@ -1,0 +1,108 @@
+---
+interface Props {
+  formName: string;
+  heading?: string;
+  subheading?: string;
+  submitLabel?: string;
+  intentDefault?: 'valuation' | 'buy' | 'sell' | 'general';
+  showPropertyFields?: boolean;
+  class?: string;
+}
+
+const {
+  formName,
+  heading = 'Get in touch',
+  subheading = 'Tell me a little about your goals. I’ll follow up personally.',
+  submitLabel = 'Send message',
+  intentDefault = 'general',
+  showPropertyFields = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class:list={['bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-sm', className]}>
+  {heading && <h2 class="font-serif text-2xl sm:text-3xl text-[var(--navy)] mb-2">{heading}</h2>}
+  {subheading && <p class="text-stone-600 text-sm sm:text-base mb-6">{subheading}</p>}
+
+  <form
+    name={formName}
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    action="/thank-you"
+    class="space-y-4"
+  >
+    <input type="hidden" name="form-name" value={formName} />
+    <p class="hidden" aria-hidden="true">
+      <label>Don’t fill this out: <input name="bot-field" /></label>
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label class="label" for={`${formName}-name`}>Full name *</label>
+        <input class="input" id={`${formName}-name`} name="name" required autocomplete="name" />
+      </div>
+      <div>
+        <label class="label" for={`${formName}-phone`}>Phone *</label>
+        <input class="input" id={`${formName}-phone`} name="phone" type="tel" required autocomplete="tel" />
+      </div>
+    </div>
+
+    <div>
+      <label class="label" for={`${formName}-email`}>Email *</label>
+      <input class="input" id={`${formName}-email`} name="email" type="email" required autocomplete="email" />
+    </div>
+
+    <div>
+      <label class="label" for={`${formName}-intent`}>I’m interested in *</label>
+      <select class="input" id={`${formName}-intent`} name="intent" required>
+        <option value="valuation" selected={intentDefault === 'valuation'}>Home valuation / selling</option>
+        <option value="buy" selected={intentDefault === 'buy'}>Buying a home</option>
+        <option value="sell" selected={intentDefault === 'sell'}>Selling a home</option>
+        <option value="both" selected={false}>Buying and selling</option>
+        <option value="general" selected={intentDefault === 'general'}>General question</option>
+      </select>
+    </div>
+
+    {showPropertyFields && (
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="sm:col-span-2">
+          <label class="label" for={`${formName}-address`}>Property address</label>
+          <input class="input" id={`${formName}-address`} name="address" autocomplete="street-address" placeholder="Street, city, ZIP" />
+        </div>
+        <div>
+          <label class="label" for={`${formName}-timeline`}>Timeline</label>
+          <select class="input" id={`${formName}-timeline`} name="timeline">
+            <option value="">Select…</option>
+            <option value="asap">ASAP</option>
+            <option value="30-60">30–60 days</option>
+            <option value="3-6mo">3–6 months</option>
+            <option value="6mo+">6+ months / exploring</option>
+          </select>
+        </div>
+        <div>
+          <label class="label" for={`${formName}-type`}>Property type</label>
+          <select class="input" id={`${formName}-type`} name="property_type">
+            <option value="">Select…</option>
+            <option value="sfr">Single-family</option>
+            <option value="condo">Condo / townhome</option>
+            <option value="multi">Multi-unit</option>
+            <option value="land">Land</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+    )}
+
+    <div>
+      <label class="label" for={`${formName}-message`}>Message</label>
+      <textarea class="input" id={`${formName}-message`} name="message" rows="4" placeholder="Anything helpful — goals, neighborhood, questions…"></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary w-full sm:w-auto">{submitLabel}</button>
+    <p class="text-xs text-stone-500 pt-1">
+      By submitting, you agree to be contacted about real estate services. Message/data rates may apply.
+      See <a class="underline" href="/privacy">Privacy Policy</a>.
+    </p>
+  </form>
+</div>

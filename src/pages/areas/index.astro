@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import areas from '../../data/areas.json';
+import site from '../../data/site.json';
+---
+
+<Layout
+  title="Areas Served"
+  description={`Real estate guidance in Temecula, Murrieta, Menifee, and Orange County with Laura D. Farley, eXp Realty. DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main class="max-w-6xl mx-auto px-5 sm:px-6 py-14">
+    <h1 class="font-serif text-4xl sm:text-5xl text-[var(--navy)] mb-4">Areas served</h1>
+    <p class="text-lg text-stone-600 max-w-3xl mb-12">
+      Primary focus: <strong>Temecula to Orange County</strong>, with deep familiarity across Southwest Riverside County communities buyers and sellers compare every week.
+    </p>
+    <div class="grid md:grid-cols-2 gap-6">
+      {areas.map((a) => (
+        <a href={`/areas/${a.slug}`} class="block rounded-3xl border border-stone-200 bg-white p-8 hover:shadow-lg hover:border-[var(--gold)]/60 transition">
+          <div class="text-xs uppercase tracking-[2px] text-[var(--gold)] font-semibold">{a.region}</div>
+          <h2 class="font-serif text-3xl text-[var(--navy)] mt-2">{a.name}</h2>
+          <p class="text-stone-600 mt-4 leading-relaxed">{a.blurb}</p>
+          <div class="mt-6 text-[var(--navy)] font-semibold">Explore {a.name} →</div>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>

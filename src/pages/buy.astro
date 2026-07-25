@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import LeadForm from '../components/LeadForm.astro';
+import site from '../data/site.json';
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<Layout
+  title="Buy a Home"
+  description={`Buy a home in Temecula or Orange County with Laura D. Farley, Broker Associate, eXp Realty. Buyer consult and local strategy. DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main>
+    <section class="bg-[var(--navy)] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6 py-14">
+        <p class="text-[var(--gold-soft)] text-sm font-medium uppercase tracking-wide mb-3">Buyers</p>
+        <h1 class="font-serif text-4xl sm:text-5xl max-w-3xl leading-tight">Buy with confidence from Temecula to OC.</h1>
+        <p class="mt-5 text-lg text-white/85 max-w-2xl">
+          Competitive markets reward preparation. We’ll align budget, neighborhoods, and offer strategy before you fall in love with the wrong house.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-6 py-14 grid lg:grid-cols-2 gap-12">
+      <div class="space-y-8">
+        <div>
+          <h2 class="font-serif text-3xl text-[var(--navy)] mb-4">Buyer support that actually helps</h2>
+          <ul class="space-y-3 text-stone-700">
+            <li class="flex gap-2"><span class="text-[var(--gold)]">✓</span> Neighborhood fit: schools, commute, HOA, lifestyle</li>
+            <li class="flex gap-2"><span class="text-[var(--gold)]">✓</span> Financing readiness and offer packaging</li>
+            <li class="flex gap-2"><span class="text-[var(--gold)]">✓</span> Comp-based pricing so you don’t overpay blindly</li>
+            <li class="flex gap-2"><span class="text-[var(--gold)]">✓</span> Inspection & contingency guidance through closing</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-stone-200 p-6 bg-white">
+          <h3 class="font-semibold text-[var(--navy)]">First-time, move-up, or relocating?</h3>
+          <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+            Tell me where you are in the process. If you’re also selling, we can coordinate timing so you’re not stuck bridging blindly — or leaving equity on the table.
+          </p>
+        </div>
+        <p class="text-stone-600 text-sm">
+          Direct line:
+          <a class="font-semibold text-[var(--navy)] underline" href={`tel:${phoneTel}`}>{site.phone}</a>
+          ·
+          <a class="font-semibold text-[var(--navy)] underline" href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+      </div>
+
+      <LeadForm
+        formName="buyer-consult"
+        heading="Buyer consultation"
+        subheading="Share your target areas, budget range, and timeline. I’ll follow up with a plan."
+        submitLabel="Request buyer consult"
+        intentDefault="buy"
+        showPropertyFields={false}
+      />
+    </section>
+  </main>
+</Layout>

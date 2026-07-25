@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import LeadForm from '../components/LeadForm.astro';
+import site from '../data/site.json';
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<Layout
+  title="Contact"
+  description={`Contact Laura D. Farley, eXp Realty — Temecula & Orange County real estate. Call ${site.phone} or send a message. DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main class="max-w-6xl mx-auto px-5 sm:px-6 py-14">
+    <h1 class="font-serif text-4xl sm:text-5xl text-[var(--navy)] mb-4">Contact</h1>
+    <p class="text-lg text-stone-600 max-w-2xl mb-10">
+      Reach me directly. For the fastest response, call or text — or send the form and I’ll follow up.
+    </p>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <div class="space-y-6">
+        <div class="rounded-3xl border border-stone-200 bg-white p-8 space-y-5">
+          <div>
+            <div class="text-sm text-stone-500">Phone</div>
+            <a class="text-xl font-semibold text-[var(--navy)] hover:underline" href={`tel:${phoneTel}`}>{site.phone}</a>
+          </div>
+          <div>
+            <div class="text-sm text-stone-500">Email</div>
+            <a class="text-lg font-medium text-[var(--navy)] hover:underline break-all" href={`mailto:${site.email}`}>{site.email}</a>
+          </div>
+          <div>
+            <div class="text-sm text-stone-500">Brokerage</div>
+            <div class="text-stone-800">{site.brokerage}</div>
+          </div>
+          <div>
+            <div class="text-sm text-stone-500">License</div>
+            <div class="text-stone-800">DRE# {site.dre}</div>
+          </div>
+          <div>
+            <div class="text-sm text-stone-500">Markets</div>
+            <div class="text-stone-800">{site.markets.join(', ')}</div>
+          </div>
+        </div>
+        <p class="text-sm text-stone-500">
+          If your property is already listed with another broker, this is not a solicitation.
+        </p>
+      </div>
+
+      <LeadForm
+        formName="contact"
+        heading="Send a message"
+        subheading="Buying, selling, valuation, or a quick question — I read every inquiry."
+        submitLabel="Send message"
+        intentDefault="general"
+        showPropertyFields={true}
+      />
+    </div>
+  </main>
+</Layout>

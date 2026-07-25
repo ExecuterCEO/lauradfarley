@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import site from '../data/site.json';
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<Layout title="Privacy Policy" description={`Privacy Policy for ${site.siteUrl} — how Laura D. Farley handles inquiry and website data.`}>
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 py-14 prose prose-stone">
+    <h1 class="font-serif text-4xl text-[var(--navy)] not-prose mb-2">Privacy Policy</h1>
+    <p class="text-stone-500 not-prose mb-10">Last updated: July 25, 2026 · {site.siteUrl}</p>
+
+    <p>
+      {site.name} (“I,” “me,” “we”) operates {site.siteUrl}. This policy describes how information is collected and used
+      when you visit the site or submit a lead form.
+    </p>
+
+    <h2>Who we are</h2>
+    <p>
+      {site.name}, {site.title}, DRE# {site.dre}, {site.brokerage}.
+      Contact: <a href={`mailto:${site.email}`}>{site.email}</a> · <a href={`tel:${phoneTel}`}>{site.phone}</a>
+    </p>
+
+    <h2>Information we collect</h2>
+    <ul>
+      <li><strong>Information you submit</strong> — name, email, phone, property address, timeline, message content, and related inquiry details.</li>
+      <li><strong>Technical data</strong> — IP address, browser type, device, pages viewed, and approximate location via hosting logs (e.g. Netlify) and standard server analytics.</li>
+      <li><strong>Cookies</strong> — may be used for site operation and, if enabled later, analytics or advertising.</li>
+    </ul>
+
+    <h2>How we use information</h2>
+    <ul>
+      <li>To respond to real estate inquiries and provide requested services</li>
+      <li>To follow up about buying, selling, valuations, or related services</li>
+      <li>To operate, secure, and improve the website</li>
+      <li>To comply with legal and professional obligations</li>
+    </ul>
+
+    <h2>Sharing</h2>
+    <p>
+      We do not sell your personal information. We may share data with service providers who process it on our behalf
+      (hosting, form delivery, email) and with other parties when required by law or necessary to complete a real estate
+      transaction you request (e.g. escrow, title, lenders) with appropriate authorization.
+    </p>
+
+    <h2>Retention</h2>
+    <p>Inquiry records are retained as needed for client service, legitimate business purposes, and legal requirements.</p>
+
+    <h2>Your choices</h2>
+    <p>
+      You may request access or correction of your information, or ask us to stop promotional follow-up, by emailing
+      <a href={`mailto:${site.email}`}>{site.email}</a>. We may still contact you about an active transaction or as required by law.
+    </p>
+
+    <h2>Children</h2>
+    <p>This site is not directed to children under 13. We do not knowingly collect their information.</p>
+
+    <h2>Changes</h2>
+    <p>We may update this policy from time to time. The “Last updated” date will change when we do.</p>
+
+    <h2>Contact</h2>
+    <p>
+      Privacy questions: <a href={`mailto:${site.email}`}>{site.email}</a> ·
+      <a href="/contact">Contact page</a>
+    </p>
+  </main>
+</Layout>

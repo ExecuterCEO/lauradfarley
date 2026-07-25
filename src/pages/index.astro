@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import LeadForm from '../components/LeadForm.astro';
+import site from '../data/site.json';
+import areas from '../data/areas.json';
+
+const years = new Date().getFullYear() - site.licensedSince;
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<Layout
+  title="Temecula & Orange County REALTOR®"
+  description={`Laura D. Farley, Broker Associate with eXp Realty. ${years}+ years helping buyers and sellers from Temecula to Orange County. Free home valuation. DRE# ${site.dre}.`}
+>
+  <Navbar />
+
+  <!-- Hero -->
+  <header class="relative overflow-hidden bg-[var(--navy)] text-white">
+    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top_right,_var(--gold)_0%,_transparent_50%)]"></div>
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-14 sm:py-20 relative grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-[var(--gold-soft)] text-sm font-medium tracking-wide uppercase mb-4">
+          {site.brokerage} · Licensed since {site.licensedSince}
+        </p>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-[3.25rem] leading-tight tracking-tight">
+          Your next move in Temecula &amp; Orange County — handled with clarity.
+        </h1>
+        <p class="mt-6 text-lg text-white/85 max-w-xl leading-relaxed">
+          {site.primaryTagline} Whether you’re selling, buying, or both, you get direct access and a strategy built around your timeline.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/sell#valuation" class="btn-primary">Get my home’s value</a>
+          <a href="/buy" class="btn-secondary">I want to buy</a>
+        </div>
+        <dl class="mt-10 grid grid-cols-3 gap-4 max-w-lg">
+          <div>
+            <dt class="text-2xl sm:text-3xl font-serif text-[var(--gold)]">{years}+</dt>
+            <dd class="text-xs sm:text-sm text-white/70 mt-1">Years licensed</dd>
+          </div>
+          <div>
+            <dt class="text-2xl sm:text-3xl font-serif text-[var(--gold)]">2</dt>
+            <dd class="text-xs sm:text-sm text-white/70 mt-1">Core markets</dd>
+          </div>
+          <div>
+            <dt class="text-2xl sm:text-3xl font-serif text-[var(--gold)]">1:1</dt>
+            <dd class="text-xs sm:text-sm text-white/70 mt-1">Direct contact</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[var(--navy-deep)]">
+          <img
+            src={site.headshot}
+            alt={`${site.name}, ${site.title}`}
+            class="w-full h-auto object-cover object-top aspect-[5/4] sm:aspect-[16/11]"
+            width="1280"
+            height="585"
+          />
+        </div>
+        <div class="absolute -bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:w-72 bg-white text-stone-900 rounded-2xl p-4 shadow-xl border border-stone-100">
+          <div class="font-semibold text-[var(--navy)]">{site.name}</div>
+          <div class="text-sm text-stone-600">{site.title}</div>
+          <div class="text-xs text-stone-500 mt-1">{site.brokerage} · DRE# {site.dre}</div>
+          <a href={`tel:${phoneTel}`} class="mt-3 inline-flex text-sm font-semibold text-[var(--navy)] hover:underline">
+            {site.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="h-8 lg:h-12"></div>
+  </header>
+
+  <!-- Trust strip -->
+  <section class="border-b border-stone-200 bg-white">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-8 grid sm:grid-cols-3 gap-6 text-center sm:text-left">
+      <div>
+        <div class="font-semibold text-[var(--navy)]">Seller-focused strategy</div>
+        <p class="text-sm text-stone-600 mt-1">Pricing, prep, and negotiation designed to protect your equity.</p>
+      </div>
+      <div>
+        <div class="font-semibold text-[var(--navy)]">Buyer advocacy</div>
+        <p class="text-sm text-stone-600 mt-1">Offer strategy and local insight from Temecula to OC.</p>
+      </div>
+      <div>
+        <div class="font-semibold text-[var(--navy)]">You reach me directly</div>
+        <p class="text-sm text-stone-600 mt-1">Call/text {site.phone} · {site.email}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paths -->
+  <section class="max-w-6xl mx-auto px-5 sm:px-6 py-16">
+    <h2 class="font-serif text-3xl sm:text-4xl text-[var(--navy)] mb-3">How can I help?</h2>
+    <p class="text-stone-600 max-w-2xl mb-10">Pick the path that matches your next step. Every inquiry gets a personal response.</p>
+    <div class="grid md:grid-cols-2 gap-6">
+      <a href="/sell" class="group rounded-3xl border border-stone-200 bg-white p-8 hover:shadow-xl hover:border-[var(--gold)]/50 transition">
+        <div class="text-xs uppercase tracking-[2px] text-[var(--gold)] font-semibold mb-3">Sellers</div>
+        <h3 class="font-serif text-2xl sm:text-3xl text-[var(--navy)] group-hover:text-[var(--navy)]">What’s my home worth?</h3>
+        <p class="mt-4 text-stone-600 leading-relaxed">
+          Request a complimentary market valuation and a clear plan to sell — without pressure or guesswork.
+        </p>
+        <div class="mt-6 text-[var(--navy)] font-semibold">Get free valuation →</div>
+      </a>
+      <a href="/buy" class="group rounded-3xl border border-stone-200 bg-white p-8 hover:shadow-xl hover:border-[var(--gold)]/50 transition">
+        <div class="text-xs uppercase tracking-[2px] text-[var(--gold)] font-semibold mb-3">Buyers</div>
+        <h3 class="font-serif text-2xl sm:text-3xl text-[var(--navy)]">Find your next home</h3>
+        <p class="mt-4 text-stone-600 leading-relaxed">
+          From first-time buyers to move-up and coastal-adjacent OC searches — strategy before you write the offer.
+        </p>
+        <div class="mt-6 text-[var(--navy)] font-semibold">Start buyer consult →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="bg-white border-y border-stone-200">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div>
+          <h2 class="font-serif text-3xl sm:text-4xl text-[var(--navy)]">Areas served</h2>
+          <p class="text-stone-600 mt-2">Local guidance across Southwest Riverside County and Orange County.</p>
+        </div>
+        <a href="/areas" class="text-[var(--navy)] font-semibold hover:underline">View all areas →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {areas.map((a) => (
+          <a href={`/areas/${a.slug}`} class="rounded-2xl border border-stone-200 p-5 hover:border-[var(--gold)] hover:shadow-md transition bg-stone-50">
+            <div class="font-serif text-xl text-[var(--navy)]">{a.name}</div>
+            <div class="text-xs text-stone-500 mt-1">{a.region}</div>
+            <p class="text-sm text-stone-600 mt-3 line-clamp-3">{a.blurb}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About teaser + form -->
+  <section class="max-w-6xl mx-auto px-5 sm:px-6 py-16 grid lg:grid-cols-2 gap-12 items-start">
+    <div>
+      <h2 class="font-serif text-3xl sm:text-4xl text-[var(--navy)] mb-4">Work with a steady professional</h2>
+      <p class="text-stone-700 leading-relaxed text-lg">
+        I’m {site.name}, {site.title} with {site.brokerage}. I’ve been a licensed REALTOR® since {site.licensedSince},
+        helping clients navigate purchases and sales with straightforward communication and careful negotiation.
+      </p>
+      <ul class="mt-6 space-y-3 text-stone-700">
+        <li class="flex gap-2"><span class="text-[var(--gold)] font-bold">✓</span> Licensed California REALTOR® (DRE# {site.dre})</li>
+        <li class="flex gap-2"><span class="text-[var(--gold)] font-bold">✓</span> Primary focus: Temecula ↔ Orange County</li>
+        <li class="flex gap-2"><span class="text-[var(--gold)] font-bold">✓</span> Direct line — you won’t get lost in a call center</li>
+      </ul>
+      <a href="/about" class="btn-outline mt-8">More about Laura</a>
+    </div>
+    <LeadForm
+      formName="home-lead"
+      heading="Request a callback"
+      subheading="Share your goals — buying, selling, or both. I typically respond within one business day."
+      submitLabel="Request callback"
+      intentDefault="general"
+    />
+  </section>
+</Layout>

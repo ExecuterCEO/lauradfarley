@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import site from '../data/site.json';
+
+const years = new Date().getFullYear() - site.licensedSince;
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<Layout
+  title="About"
+  description={`About Laura D. Farley, Broker Associate with eXp Realty. Licensed REALTOR® since ${site.licensedSince}. Temecula to Orange County. DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main class="max-w-5xl mx-auto px-5 sm:px-6 py-14">
+    <div class="grid lg:grid-cols-5 gap-12 items-start">
+      <div class="lg:col-span-2">
+        <div class="rounded-3xl overflow-hidden border border-stone-200 shadow-lg">
+          <img src={site.headshot} alt={site.name} class="w-full h-auto object-cover object-top" width="1280" height="585" />
+        </div>
+        <div class="mt-5 text-sm text-stone-600 space-y-1">
+          <div class="font-semibold text-[var(--navy)] text-lg">{site.name}</div>
+          <div>{site.title}</div>
+          <div>{site.brokerage}</div>
+          <div>DRE# {site.dre}</div>
+          <a class="block text-[var(--navy)] font-medium hover:underline pt-2" href={`tel:${phoneTel}`}>{site.phone}</a>
+          <a class="block text-[var(--navy)] font-medium hover:underline" href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h1 class="font-serif text-4xl sm:text-5xl text-[var(--navy)] mb-6">About Laura</h1>
+        <div class="space-y-5 text-lg text-stone-700 leading-relaxed">
+          <p>
+            I’m a {site.title} with {site.brokerage}, serving clients from <strong>Temecula</strong> through
+            <strong> Orange County</strong>. I’ve held my California real estate license since
+            <strong> {site.licensedSince}</strong> — {years}+ years of guiding buyers and sellers through one of the most important financial decisions they’ll make.
+          </p>
+          <p>
+            My approach is practical and personal: clear communication, honest pricing conversations, and negotiation that protects your interests. You work with me directly — not a revolving handoff.
+          </p>
+          <p>
+            Whether you’re preparing to list, relocating into wine country, or competing for a home in Orange County, I’ll help you build a strategy that fits your timeline and risk tolerance.
+          </p>
+        </div>
+
+        <div class="mt-10 grid sm:grid-cols-2 gap-4">
+          <div class="rounded-2xl bg-stone-100 p-5">
+            <div class="text-sm text-stone-500">License</div>
+            <div class="font-semibold text-[var(--navy)] mt-1">CA DRE# {site.dre}</div>
+          </div>
+          <div class="rounded-2xl bg-stone-100 p-5">
+            <div class="text-sm text-stone-500">Brokerage</div>
+            <div class="font-semibold text-[var(--navy)] mt-1">{site.brokerage}</div>
+          </div>
+          <div class="rounded-2xl bg-stone-100 p-5">
+            <div class="text-sm text-stone-500">Markets</div>
+            <div class="font-semibold text-[var(--navy)] mt-1">{site.markets.join(', ')}</div>
+          </div>
+          <div class="rounded-2xl bg-stone-100 p-5">
+            <div class="text-sm text-stone-500">Licensed since</div>
+            <div class="font-semibold text-[var(--navy)] mt-1">{site.licensedSince}</div>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/sell#valuation" class="btn-primary">Free home value</a>
+          <a href="/contact" class="btn-outline">Contact Laura</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

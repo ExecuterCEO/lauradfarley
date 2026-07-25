@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import site from '../data/site.json';
+---
+
+<Layout title="Terms of Use" description={`Terms of Use for ${site.siteUrl}.`}>
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 py-14 prose prose-stone">
+    <h1 class="font-serif text-4xl text-[var(--navy)] not-prose mb-2">Terms of Use</h1>
+    <p class="text-stone-500 not-prose mb-10">Last updated: July 25, 2026 · {site.siteUrl}</p>
+
+    <p>
+      By using {site.siteUrl}, you agree to these Terms. If you do not agree, do not use the site.
+    </p>
+
+    <h2>Who we are</h2>
+    <p>
+      Site operated by {site.name}, {site.title}, DRE# {site.dre}, {site.brokerage}.
+      Real estate services are offered where properly licensed.
+    </p>
+
+    <h2>Informational purpose</h2>
+    <p>
+      Content is for general information only and is not legal, tax, or financial advice. Market conditions change.
+      Property information, if any, is deemed reliable but not guaranteed. Always verify critical details independently.
+    </p>
+
+    <h2>No guarantee of results</h2>
+    <p>
+      Past performance and general market commentary do not guarantee future results in any transaction.
+    </p>
+
+    <h2>Not a solicitation of listed property</h2>
+    <p>
+      This website is not intended as a solicitation of property currently listed with another broker.
+    </p>
+
+    <h2>Lead forms</h2>
+    <p>
+      Submitting a form requests contact about real estate services. It does not create an agency relationship until
+      a written agreement is signed where required.
+    </p>
+
+    <h2>Intellectual property</h2>
+    <p>Site design and original content are owned by us or used under license. Do not copy for commercial reuse without permission.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>
+      TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE ARE NOT LIABLE FOR INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
+      ARISING FROM USE OF THE SITE. TOTAL LIABILITY FOR CLAIMS RELATING TO THE SITE IS LIMITED TO USD $100.
+    </p>
+
+    <h2>Governing law</h2>
+    <p>These Terms are governed by the laws of the State of California.</p>
+
+    <h2>Contact</h2>
+    <p>
+      <a href={`mailto:${site.email}`}>{site.email}</a> ·
+      <a href="/contact">Contact</a> ·
+      <a href="/privacy">Privacy</a>
+    </p>
+  </main>
+</Layout>

@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="Page not found">
+  <Navbar />
+  <main class="max-w-xl mx-auto px-5 py-24 text-center">
+    <h1 class="font-serif text-4xl text-[var(--navy)] mb-4">Page not found</h1>
+    <p class="text-stone-600 mb-8">That URL doesn’t exist on this site.</p>
+    <a href="/" class="btn-primary">Go home</a>
+  </main>
+</Layout>

@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import LeadForm from '../components/LeadForm.astro';
+import site from '../data/site.json';
+const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+---
+
+<Layout
+  title="Sell Your Home"
+  description={`Sell your Temecula or Orange County home with Laura D. Farley, eXp Realty. Free market valuation and a clear listing plan. DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main>
+    <section class="bg-[var(--navy)] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6 py-14 sm:py-18">
+        <p class="text-[var(--gold-soft)] text-sm font-medium uppercase tracking-wide mb-3">Sellers</p>
+        <h1 class="font-serif text-4xl sm:text-5xl max-w-3xl leading-tight">Sell with a plan — not a guess.</h1>
+        <p class="mt-5 text-lg text-white/85 max-w-2xl">
+          From pricing strategy to negotiation, I’ll help you position your home for a strong result in today’s market.
+          Start with a complimentary valuation.
+        </p>
+        <a href="#valuation" class="btn-primary mt-8">Get my free home value</a>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-6 py-14 grid lg:grid-cols-2 gap-12">
+      <div>
+        <h2 class="font-serif text-3xl text-[var(--navy)] mb-6">What you can expect</h2>
+        <ol class="space-y-5">
+          <li class="flex gap-4">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[var(--navy)] text-white flex items-center justify-center font-semibold">1</span>
+            <div>
+              <div class="font-semibold text-[var(--navy)]">Market valuation</div>
+              <p class="text-sm text-stone-600 mt-1">Comps, condition, and pricing ranges that match your timeline — not a portal Zestimate alone.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[var(--navy)] text-white flex items-center justify-center font-semibold">2</span>
+            <div>
+              <div class="font-semibold text-[var(--navy)]">Prep & positioning</div>
+              <p class="text-sm text-stone-600 mt-1">Practical guidance on repairs, staging priorities, and what buyers in your micro-market actually pay for.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[var(--navy)] text-white flex items-center justify-center font-semibold">3</span>
+            <div>
+              <div class="font-semibold text-[var(--navy)]">Marketing & showings</div>
+              <p class="text-sm text-stone-600 mt-1">Professional exposure through MLS, syndication, and targeted outreach so qualified buyers find your home.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="shrink-0 w-9 h-9 rounded-full bg-[var(--navy)] text-white flex items-center justify-center font-semibold">4</span>
+            <div>
+              <div class="font-semibold text-[var(--navy)]">Offers & closing</div>
+              <p class="text-sm text-stone-600 mt-1">Negotiation, contingencies, and coordination through escrow so surprises stay minimal.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="mt-10 rounded-2xl bg-stone-100 p-6">
+          <h3 class="font-semibold text-[var(--navy)]">Serving sellers in</h3>
+          <p class="text-stone-600 text-sm mt-2">{site.markets.join(' · ')}</p>
+          <p class="text-stone-600 text-sm mt-4">
+            Prefer to talk first?
+            <a class="font-semibold text-[var(--navy)] underline" href={`tel:${phoneTel}`}>{site.phone}</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="valuation">
+        <LeadForm
+          formName="home-valuation"
+          heading="Free home valuation"
+          subheading="No obligation. I’ll review your property and follow up with next-step options."
+          submitLabel="Request my valuation"
+          intentDefault="valuation"
+          showPropertyFields={true}
+        />
+      </div>
+    </section>
+  </main>
+</Layout>
