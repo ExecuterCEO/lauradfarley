@@ -53,15 +53,25 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
   @import "tailwindcss";
 
   :root {
-    --navy: #0f2c4c;
-    --navy-deep: #0a1f36;
-    /* Metallic platinum system (cool silver, not gold) */
-    --platinum: #c5ccd4;
-    --platinum-soft: #e8ecf0;
-    --platinum-bright: #f3f5f7;
-    --platinum-deep: #8b949e;
-    --platinum-metal: linear-gradient(145deg, #f7f8fa 0%, #c5ccd4 42%, #9aa3ad 78%, #dfe3e8 100%);
-    --ink: #1c1917;
+    /* Modern Botanical — silvery sage, dusty blush, cream */
+    --cream: #f7f3ec;
+    --cream-deep: #efe8dc;
+    --sage: #8fa38a;
+    --sage-soft: #c5d0c0;
+    --sage-deep: #4a5c47;
+    --sage-ink: #3a4838;
+    --blush: #d4a8a4;
+    --blush-soft: #e8cfcb;
+    --blush-deep: #b88480;
+    --ink: #2f332e;
+
+    /* Aliases used across pages (legacy names → botanical) */
+    --navy: var(--sage-ink);
+    --navy-deep: #2f3b2e;
+    --platinum: var(--blush);
+    --platinum-soft: var(--blush-soft);
+    --platinum-bright: var(--cream);
+    --platinum-deep: var(--blush-deep);
   }
 
   html {
@@ -70,6 +80,8 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
 
   body {
     font-family: "DM Sans", system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
   }
 
   .font-serif {
@@ -81,41 +93,42 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
     isolation: isolate;
     overflow: hidden;
     @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold transition;
-    color: var(--navy-deep);
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    /* Faceted diamond / gem body */
+    color: var(--sage-ink);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 245, 240, 0.85);
+    /* Soft botanical “petal” depth — sage + blush + cream */
     background:
-      linear-gradient(115deg, transparent 0%, transparent 42%, rgba(255, 255, 255, 0.9) 49.5%, transparent 57%, transparent 100%),
-      linear-gradient(155deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.45) 48%, transparent 62%),
-      linear-gradient(35deg, #7a8490 0%, #aeb6c0 18%, #f7f9fb 36%, #d5dbe3 52%, #8e97a2 72%, #cfd5dd 88%, #f3f5f8 100%),
-      linear-gradient(180deg, #eef2f6 0%, #b4bcc6 55%, #8b949e 100%);
-    background-size: 220% 220%, 180% 180%, 100% 100%, 100% 100%;
-    background-position: 30% 40%, 60% 30%, center, center;
+      linear-gradient(115deg, transparent 0%, transparent 42%, rgba(255, 255, 255, 0.75) 49.5%, transparent 57%, transparent 100%),
+      linear-gradient(155deg, #f7f3ec 0%, #e8cfcb 28%, #d4a8a4 52%, #c5d0c0 78%, #8fa38a 100%);
+    background-size: 220% 220%, 100% 100%;
+    background-position: 30% 40%, center;
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.95) inset,
-      0 -1px 0 rgba(90, 100, 112, 0.35) inset,
-      0 0 0 1px rgba(155, 165, 176, 0.45) inset,
-      0 10px 28px rgba(15, 44, 76, 0.28),
-      0 2px 0 rgba(255, 255, 255, 0.25);
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 -1px 0 rgba(74, 92, 71, 0.18) inset,
+      0 10px 28px rgba(58, 72, 56, 0.18),
+      0 2px 0 rgba(255, 255, 255, 0.2);
   }
 
-  /* Crystal edge gleam */
   .btn-primary::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    background:
-      linear-gradient(105deg, transparent 0%, transparent 38%, rgba(255, 255, 255, 0.95) 50%, transparent 62%, transparent 100%);
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(255, 255, 255, 0.85) 50%,
+      transparent 62%,
+      transparent 100%
+    );
     background-size: 220% 100%;
     background-position: 120% 0;
-    animation: gem-shine 3.8s ease-in-out infinite;
+    animation: gem-shine 4.2s ease-in-out infinite;
     pointer-events: none;
   }
 
-  /* Sparkle flecks */
   .btn-primary::after {
     content: "";
     position: absolute;
@@ -123,27 +136,22 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
     z-index: -1;
     border-radius: inherit;
     pointer-events: none;
-    opacity: 0.9;
+    opacity: 0.75;
     background:
-      radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 1) 0 1.1px, transparent 1.8px),
-      radial-gradient(circle at 72% 28%, rgba(255, 255, 255, 0.95) 0 1px, transparent 1.7px),
-      radial-gradient(circle at 58% 68%, rgba(255, 255, 255, 0.9) 0 1.2px, transparent 2px),
-      radial-gradient(circle at 34% 74%, rgba(230, 240, 255, 0.95) 0 0.9px, transparent 1.6px),
-      radial-gradient(circle at 84% 58%, rgba(255, 255, 255, 1) 0 1px, transparent 1.8px),
-      radial-gradient(circle at 46% 22%, rgba(200, 220, 255, 0.9) 0 0.8px, transparent 1.5px);
-    animation: gem-sparkle 2.4s ease-in-out infinite;
+      radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 0.95) 0 1.1px, transparent 1.8px),
+      radial-gradient(circle at 72% 28%, rgba(255, 250, 245, 0.9) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 58% 68%, rgba(232, 207, 203, 0.95) 0 1.2px, transparent 2px),
+      radial-gradient(circle at 34% 74%, rgba(197, 208, 192, 0.9) 0 0.9px, transparent 1.6px);
+    animation: gem-sparkle 2.8s ease-in-out infinite;
   }
 
   .btn-primary:hover {
     transform: translateY(-1px);
-    filter: saturate(1.05) brightness(1.04);
-    background-position: 55% 45%, 40% 50%, center, center;
+    filter: saturate(1.06) brightness(1.03);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 1) inset,
-      0 -1px 0 rgba(90, 100, 112, 0.3) inset,
-      0 0 0 1px rgba(180, 190, 205, 0.55) inset,
-      0 14px 34px rgba(15, 44, 76, 0.34),
-      0 0 18px rgba(200, 220, 255, 0.35);
+      0 14px 32px rgba(58, 72, 56, 0.22),
+      0 0 16px rgba(212, 168, 164, 0.35);
   }
 
   .btn-primary:active {
@@ -173,15 +181,15 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
   @keyframes gem-sparkle {
     0%,
     100% {
-      opacity: 0.55;
+      opacity: 0.45;
       filter: brightness(1);
     }
     40% {
-      opacity: 1;
-      filter: brightness(1.25);
+      opacity: 0.95;
+      filter: brightness(1.15);
     }
     70% {
-      opacity: 0.7;
+      opacity: 0.6;
       filter: brightness(1.05);
     }
   }
@@ -198,41 +206,51 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold transition;
-    border: 1px solid rgba(220, 228, 238, 0.65);
-    color: #f3f5f7;
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(197, 204, 212, 0.08) 45%, rgba(255, 255, 255, 0.05) 100%);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    border: 1px solid rgba(232, 207, 203, 0.55);
+    color: #f7f3ec;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(212, 168, 164, 0.12) 45%,
+      rgba(143, 163, 138, 0.1) 100%
+    );
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset;
   }
 
   .btn-secondary:hover {
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.22) 0%, rgba(197, 204, 212, 0.14) 50%, rgba(255, 255, 255, 0.08) 100%);
-    border-color: rgba(232, 236, 240, 0.85);
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(232, 207, 203, 0.18) 50%,
+      rgba(197, 208, 192, 0.12) 100%
+    );
+    border-color: rgba(247, 243, 236, 0.75);
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full border font-semibold transition bg-white;
-    border-color: #c5ccd4;
-    color: var(--navy);
+    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full border font-semibold transition;
+    border-color: var(--sage-soft);
+    color: var(--sage-ink);
+    background: #fffdf9;
   }
 
   .btn-outline:hover {
-    border-color: var(--navy);
-    background: var(--platinum-bright);
+    border-color: var(--sage);
+    background: var(--cream-deep);
   }
 
   .input {
-    @apply w-full px-4 py-3 rounded-xl border border-stone-300 bg-white focus:outline-none focus:ring-2 focus:border-[var(--platinum-deep)];
-    focus-ring-color: transparent;
+    @apply w-full px-4 py-3 rounded-xl border bg-white focus:outline-none focus:ring-2;
+    border-color: #d9d2c6;
   }
 
   .input:focus {
-    border-color: var(--platinum-deep);
-    box-shadow: 0 0 0 3px rgba(197, 204, 212, 0.45);
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(143, 163, 138, 0.35);
   }
 
   .label {
-    @apply block text-sm font-medium text-stone-700 mb-1.5;
+    @apply block text-sm font-medium mb-1.5;
+    color: #5c6358;
   }
 </style>
