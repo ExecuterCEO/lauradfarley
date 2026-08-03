@@ -9,10 +9,9 @@ interface Props {
 
 const {
   title,
-  description = `${site.name} — ${site.title} with ${site.brokerage}. Helping buyers and sellers from Temecula to Orange County since ${site.licensedSince}. DRE# ${site.dre}.`,
+  description = `${site.name} — ${site.title} with ${site.brokerage}. Helping buyers and sellers in Temecula and beyond since ${site.licensedSince}. DRE# ${site.dre}.`,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
-const years = new Date().getFullYear() - site.licensedSince;
 const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
 ---
 
@@ -30,14 +29,24 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(site.headshot, site.siteUrl).toString()} />
-    <meta name="theme-color" content="#0F2C4C" />
+    <meta name="theme-color" content="#4A5E4E" />
     <title>{title} | {site.name}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google AdSense (Auto ads) — same publisher account as other Laura properties -->
+    <script
+      is:inline
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2494978762737398"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body class="bg-stone-50 text-stone-900 antialiased">
-    <div class="bg-[var(--navy)] text-white/90 text-xs sm:text-sm text-center px-4 py-2">
+  <body class="antialiased">
+    <div class="bg-[var(--sage-deep)] text-white/90 text-[11px] sm:text-xs text-center px-4 py-2 tracking-[0.12em] uppercase">
       Call or text <a class="underline font-medium hover:text-white" href={`tel:${phoneTel}`}>{site.phone}</a>
       <span class="mx-1.5 opacity-50">·</span>
       <span>{site.brokerage}</span>
@@ -53,25 +62,43 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
   @import "tailwindcss";
 
   :root {
-    /* Modern Botanical — silvery sage, dusty blush, cream */
-    --cream: #f7f3ec;
-    --cream-deep: #efe8dc;
-    --sage: #8fa38a;
-    --sage-soft: #c5d0c0;
-    --sage-deep: #4a5c47;
-    --sage-ink: #3a4838;
-    --blush: #d4a8a4;
-    --blush-soft: #e8cfcb;
-    --blush-deep: #b88480;
-    --ink: #2f332e;
+    /* Exact mockup palette (Laura 2026-07-28) */
+    --color-base-bg: #f6f7f2; /* Chantilly Lace */
+    --color-primary-sage: #9aab97; /* Light Sage Accent */
+    --color-dark-sage: #4a5e4e; /* Deep Sage / Buttons / Footer */
+    --color-card-bg: #ffffff; /* Pure White */
+    --color-text-main: #2b322c; /* Deep Charcoal */
 
-    /* Aliases used across pages (legacy names → botanical) */
-    --navy: var(--sage-ink);
-    --navy-deep: #2f3b2e;
-    --platinum: var(--blush);
-    --platinum-soft: var(--blush-soft);
-    --platinum-bright: var(--cream);
-    --platinum-deep: var(--blush-deep);
+    /* Semantic tokens mapped to exact palette */
+    --ivory: var(--color-base-bg);
+    --ivory-deep: #eef0e9;
+    --cream: var(--color-base-bg);
+    --cream-deep: #e8ebe3;
+    --alabaster: var(--color-card-bg);
+    --sage: var(--color-primary-sage);
+    --sage-soft: #c5d1c2;
+    --sage-mist: #dce4d9;
+    --sage-mid: var(--color-primary-sage);
+    --sage-deep: var(--color-dark-sage);
+    --sage-ink: var(--color-dark-sage);
+    --ink: var(--color-text-main);
+    --muted: #5c665e;
+    --line: #dfe4db;
+    --taupe: #dfe4db;
+
+    /* Legacy aliases used across pages */
+    --linen: var(--color-base-bg);
+    --espresso: var(--color-text-main);
+    --espresso-soft: var(--color-dark-sage);
+    --navy: var(--color-text-main);
+    --navy-deep: var(--color-dark-sage);
+    --platinum: var(--color-primary-sage);
+    --platinum-soft: var(--sage-soft);
+    --platinum-bright: var(--color-card-bg);
+    --platinum-deep: var(--color-dark-sage);
+    --amber: var(--color-dark-sage);
+    --amber-deep: var(--color-dark-sage);
+    --amber-soft: var(--sage-mist);
   }
 
   html {
@@ -79,79 +106,34 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
   }
 
   body {
-    font-family: "DM Sans", system-ui, sans-serif;
-    background: var(--cream);
+    font-family: "Montserrat", system-ui, sans-serif;
+    background: var(--ivory);
     color: var(--ink);
+    font-weight: 400;
   }
 
   .font-serif {
-    font-family: "Libre Baskerville", Georgia, serif;
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   }
 
+  .font-sans {
+    font-family: "Montserrat", system-ui, sans-serif;
+  }
+
+  /* Deep Sage primary CTA (#4A5E4E) */
   .btn-primary {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold transition;
-    color: var(--sage-ink);
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(255, 245, 240, 0.85);
-    /* Soft botanical “petal” depth — sage + blush + cream */
-    background:
-      linear-gradient(115deg, transparent 0%, transparent 42%, rgba(255, 255, 255, 0.75) 49.5%, transparent 57%, transparent 100%),
-      linear-gradient(155deg, #f7f3ec 0%, #e8cfcb 28%, #d4a8a4 52%, #c5d0c0 78%, #8fa38a 100%);
-    background-size: 220% 220%, 100% 100%;
-    background-position: 30% 40%, center;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.9) inset,
-      0 -1px 0 rgba(74, 92, 71, 0.18) inset,
-      0 10px 28px rgba(58, 72, 56, 0.18),
-      0 2px 0 rgba(255, 255, 255, 0.2);
-  }
-
-  .btn-primary::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    background: linear-gradient(
-      105deg,
-      transparent 0%,
-      transparent 38%,
-      rgba(255, 255, 255, 0.85) 50%,
-      transparent 62%,
-      transparent 100%
-    );
-    background-size: 220% 100%;
-    background-position: 120% 0;
-    animation: gem-shine 4.2s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  .btn-primary::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0.75;
-    background:
-      radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 0.95) 0 1.1px, transparent 1.8px),
-      radial-gradient(circle at 72% 28%, rgba(255, 250, 245, 0.9) 0 1px, transparent 1.7px),
-      radial-gradient(circle at 58% 68%, rgba(232, 207, 203, 0.95) 0 1.2px, transparent 2px),
-      radial-gradient(circle at 34% 74%, rgba(197, 208, 192, 0.9) 0 0.9px, transparent 1.6px);
-    animation: gem-sparkle 2.8s ease-in-out infinite;
+    @apply inline-flex items-center justify-center px-7 py-3.5 font-medium transition tracking-[0.12em] uppercase text-xs sm:text-sm;
+    color: #ffffff;
+    border-radius: 999px;
+    border: 1px solid var(--color-dark-sage);
+    background: var(--color-dark-sage);
+    box-shadow: 0 10px 24px rgba(74, 94, 78, 0.22);
   }
 
   .btn-primary:hover {
+    filter: brightness(1.08);
     transform: translateY(-1px);
-    filter: saturate(1.06) brightness(1.03);
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 1) inset,
-      0 14px 32px rgba(58, 72, 56, 0.22),
-      0 0 16px rgba(212, 168, 164, 0.35);
+    box-shadow: 0 14px 28px rgba(74, 94, 78, 0.28);
   }
 
   .btn-primary:active {
@@ -159,98 +141,116 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
     filter: brightness(0.98);
   }
 
-  @keyframes gem-shine {
-    0%,
-    55% {
-      background-position: 130% 0;
-      opacity: 0;
-    }
-    60% {
-      opacity: 1;
-    }
-    78% {
-      background-position: -30% 0;
-      opacity: 0.85;
-    }
-    100% {
-      background-position: -30% 0;
-      opacity: 0;
-    }
-  }
-
-  @keyframes gem-sparkle {
-    0%,
-    100% {
-      opacity: 0.45;
-      filter: brightness(1);
-    }
-    40% {
-      opacity: 0.95;
-      filter: brightness(1.15);
-    }
-    70% {
-      opacity: 0.6;
-      filter: brightness(1.05);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .btn-primary::before,
-    .btn-primary::after {
-      animation: none;
-    }
-    .btn-primary:hover {
-      transform: none;
-    }
-  }
-
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full font-semibold transition;
-    border: 1px solid rgba(232, 207, 203, 0.55);
-    color: #f7f3ec;
-    background: linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.16) 0%,
-      rgba(212, 168, 164, 0.12) 45%,
-      rgba(143, 163, 138, 0.1) 100%
-    );
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset;
+    @apply inline-flex items-center justify-center px-7 py-3.5 font-medium transition tracking-[0.12em] uppercase text-xs sm:text-sm;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
   }
 
   .btn-secondary:hover {
-    background: linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.24) 0%,
-      rgba(232, 207, 203, 0.18) 50%,
-      rgba(197, 208, 192, 0.12) 100%
-    );
-    border-color: rgba(247, 243, 236, 0.75);
+    background: rgba(255, 255, 255, 0.24);
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3.5 rounded-full border font-semibold transition;
-    border-color: var(--sage-soft);
-    color: var(--sage-ink);
-    background: #fffdf9;
+    @apply inline-flex items-center justify-center px-7 py-3.5 font-medium transition tracking-[0.12em] uppercase text-xs sm:text-sm;
+    border-radius: 999px;
+    border: 1px solid var(--color-primary-sage);
+    color: var(--color-dark-sage);
+    background: var(--color-card-bg);
   }
 
   .btn-outline:hover {
-    border-color: var(--sage);
-    background: var(--cream-deep);
+    border-color: var(--color-dark-sage);
+    background: var(--color-base-bg);
+  }
+
+  /* Light sage accent pills (#9AAB97 family) */
+  .btn-sage-soft {
+    @apply inline-flex items-center justify-center px-5 py-3 font-medium transition tracking-[0.1em] uppercase text-[11px] sm:text-xs;
+    border-radius: 999px;
+    color: var(--color-dark-sage);
+    background: color-mix(in srgb, var(--color-primary-sage) 28%, white);
+    border: 1px solid color-mix(in srgb, var(--color-primary-sage) 45%, white);
+  }
+
+  .btn-sage-soft:hover {
+    background: color-mix(in srgb, var(--color-primary-sage) 40%, white);
   }
 
   .input {
-    @apply w-full px-4 py-3 rounded-xl border bg-white focus:outline-none focus:ring-2;
-    border-color: #d9d2c6;
+    @apply w-full px-4 py-3 rounded-full border bg-white focus:outline-none focus:ring-2;
+    border-color: var(--line);
+    background: var(--color-card-bg);
+    color: var(--color-text-main);
+    font-size: 0.95rem;
   }
 
   .input:focus {
-    border-color: var(--sage);
-    box-shadow: 0 0 0 3px rgba(143, 163, 138, 0.35);
+    border-color: var(--color-primary-sage);
+    box-shadow: 0 0 0 3px rgba(154, 171, 151, 0.28);
+  }
+
+  select.input {
+    border-radius: 999px;
+  }
+
+  textarea.input {
+    border-radius: 1.25rem;
   }
 
   .label {
-    @apply block text-sm font-medium mb-1.5;
-    color: #5c6358;
+    @apply block text-xs font-medium mb-1.5 tracking-[0.14em] uppercase;
+    color: var(--muted);
+  }
+
+  .listing-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .listing-card:hover {
+    border-color: var(--color-primary-sage);
+    box-shadow: 0 14px 32px rgba(43, 50, 44, 0.08);
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-dark-sage);
+    background: color-mix(in srgb, var(--color-primary-sage) 22%, white);
+  }
+
+  .pull-quote {
+    border-left: 3px solid var(--color-primary-sage);
+    padding-left: 1.25rem;
+    color: var(--color-text-main);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* Botanical leaf accents */
+  .leaf-deco {
+    color: var(--sage-soft);
+    opacity: 0.55;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none;
+    }
   }
 </style>

@@ -4,6 +4,7 @@ import site from '../data/site.json';
 const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
 
 const links = [
+  { href: '/', label: 'Home' },
   { href: '/sell', label: 'Sell' },
   { href: '/buy', label: 'Buy' },
   { href: '/areas', label: 'Areas' },
@@ -12,34 +13,30 @@ const links = [
 ];
 ---
 
-<nav class="bg-[color:var(--cream)]/95 backdrop-blur border-b border-[color:var(--cream-deep)] sticky top-0 z-50" id="site-nav">
-  <div class="max-w-6xl mx-auto px-5 sm:px-6 h-[4.5rem] flex items-center justify-between gap-4">
+<nav class="bg-[color:var(--ivory)]/95 backdrop-blur-md border-b border-[color:var(--line)] sticky top-0 z-50" id="site-nav">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 h-[4.75rem] flex items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3 min-w-0 group">
-      <div class="w-10 h-10 shrink-0 rounded-xl flex items-center justify-center font-serif text-lg"
-           style="background: linear-gradient(145deg, #6f846a 0%, #4a5c47 55%, #3a4838 100%); color: #f7f3ec; box-shadow: inset 0 1px 0 rgba(255,255,255,0.28);">
-        LF
-      </div>
-      <div class="min-w-0">
-        <div class="font-serif text-lg sm:text-xl text-[var(--navy)] tracking-tight truncate group-hover:text-[var(--navy)]">
+      <div class="min-w-0 text-center sm:text-left">
+        <div class="font-serif text-xl sm:text-2xl text-[var(--sage-ink)] tracking-[0.08em] uppercase leading-none">
           {site.name}
         </div>
-        <div class="text-[10px] sm:text-[11px] text-stone-500 -mt-0.5 tracking-wide uppercase">
+        <div class="text-[9px] sm:text-[10px] text-[var(--sage)] mt-1 tracking-[0.28em] uppercase font-medium">
           {site.brokerage} · DRE# {site.dre}
         </div>
       </div>
     </a>
 
-    <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-stone-700">
+    <div class="hidden lg:flex items-center gap-8 text-[11px] font-medium tracking-[0.18em] uppercase text-[var(--sage-ink)]">
       {links.map((l) => (
-        <a href={l.href} class="hover:text-[var(--navy)] transition">{l.label}</a>
+        <a href={l.href} class="hover:text-[var(--sage)] transition">{l.label}</a>
       ))}
     </div>
 
-    <div class="hidden md:flex items-center gap-2">
-      <a href={`tel:${phoneTel}`} class="text-sm font-medium text-[var(--navy)] px-3 py-2 hover:underline whitespace-nowrap">
+    <div class="hidden md:flex items-center gap-3">
+      <a href={`tel:${phoneTel}`} class="text-xs font-medium tracking-wide text-[var(--sage-ink)] px-2 py-2 hover:underline whitespace-nowrap">
         {site.phone}
       </a>
-      <a href="/sell#valuation" class="btn-primary !py-2.5 !px-5 text-sm whitespace-nowrap">
+      <a href="/sell#valuation" class="btn-primary !py-2.5 !px-5 whitespace-nowrap">
         Free home value
       </a>
     </div>
@@ -47,28 +44,28 @@ const links = [
     <button
       type="button"
       id="mobile-menu-btn"
-      class="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-1 rounded-xl text-stone-700 hover:bg-stone-100"
+      class="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-1 rounded-full text-[var(--sage-ink)] hover:bg-[var(--ivory-deep)]"
       aria-label="Open menu"
       aria-controls="mobile-menu"
       aria-expanded="false"
     >
       <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16" />
       </svg>
       <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
   </div>
 
-  <div id="mobile-menu" class="lg:hidden hidden border-t border-stone-200 bg-white shadow-lg">
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-[var(--line)] bg-[var(--ivory)] shadow-lg">
     <div class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
       {links.map((l) => (
-        <a href={l.href} class="mobile-nav-link block px-3 py-3 rounded-xl text-base font-medium text-stone-800 hover:bg-stone-50">
+        <a href={l.href} class="mobile-nav-link block px-3 py-3 rounded-xl text-sm font-medium tracking-[0.14em] uppercase text-[var(--sage-ink)] hover:bg-white">
           {l.label}
         </a>
       ))}
-      <a href={`tel:${phoneTel}`} class="mobile-nav-link block px-3 py-3 rounded-xl text-base font-medium text-[var(--navy)]">
+      <a href={`tel:${phoneTel}`} class="mobile-nav-link block px-3 py-3 rounded-xl text-sm font-medium text-[var(--sage-ink)]">
         Call {site.phone}
       </a>
       <a href="/sell#valuation" class="mobile-nav-link mt-2 block text-center btn-primary">
