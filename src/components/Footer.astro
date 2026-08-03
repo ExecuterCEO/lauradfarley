@@ -16,7 +16,7 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
         <a href="/terms" class="hover:text-white transition">Terms</a>
       </div>
       <div class="text-center md:text-right text-white/80">
-        {site.name} · Real Estate
+        {site.nameWithCredentials} · Listing Agent
       </div>
     </div>
   </div>
@@ -25,9 +25,9 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
     <div class="max-w-6xl mx-auto px-5 sm:px-6 py-12">
       <div class="grid md:grid-cols-4 gap-10">
         <div class="md:col-span-2">
-          <div class="font-serif text-3xl text-[var(--sage-ink)] tracking-[0.06em] mb-3">{site.name}</div>
+          <div class="font-serif text-3xl text-[var(--sage-ink)] tracking-[0.06em] mb-3">{site.nameWithCredentials}</div>
           <p class="text-sm leading-relaxed max-w-md">
-            {site.title} with {site.brokerage}. Primary focus: Temecula, with experience across Southwest Riverside County and Orange County.
+            Listing Agent · {site.title} with {site.brokerage}. Primary focus: Temecula homes and estates — also representing buyers. Experience across Southwest Riverside County and Orange County.
             Licensed REALTOR® since {site.licensedSince} ({years}+ years).
           </p>
           <div class="mt-5 space-y-1 text-sm text-[var(--sage-ink)]">

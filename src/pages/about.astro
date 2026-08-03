@@ -9,7 +9,7 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
 
 <Layout
   title="About"
-  description={`About Laura D. Farley, Broker Associate with eXp Realty. Licensed REALTOR® since ${site.licensedSince}. Temecula real estate. DRE# ${site.dre}.`}
+  description={`About Laura D. Farley, MBA — Listing Agent & Broker Associate with eXp Realty. Licensed REALTOR® since ${site.licensedSince}. Temecula homes & estates. DRE# ${site.dre}.`}
 >
   <Navbar />
   <main class="bg-[var(--linen)]">
@@ -19,15 +19,15 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
           <div class="rounded-3xl overflow-hidden border border-[var(--taupe)] shadow-lg bg-[var(--alabaster)]">
             <img
               src={site.headshot}
-              alt={site.name}
+              alt={site.nameWithCredentials}
               class="w-full h-auto object-cover object-top"
               width="1280"
               height="585"
             />
           </div>
           <div class="mt-5 text-sm text-stone-600 space-y-1">
-            <div class="font-semibold text-[var(--sage-ink)] text-lg">{site.name}</div>
-            <div>{site.title}</div>
+            <div class="font-semibold text-[var(--sage-ink)] text-lg">{site.nameWithCredentials}</div>
+            <div>Listing Agent · {site.title}</div>
             <div>{site.brokerage}</div>
             <div>DRE# {site.dre}</div>
             <a class="block text-[var(--sage-ink)] font-medium hover:underline pt-2" href={`tel:${phoneTel}`}>{site.phone}</a>
@@ -36,23 +36,24 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
         </div>
 
         <div class="lg:col-span-3">
-          <h1 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mb-6">About Laura</h1>
+          <h1 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mb-2">About Laura</h1>
+          <p class="text-[var(--sage-deep)] text-lg mb-6">{site.nameWithCredentials}</p>
 
           <blockquote class="pull-quote mb-8">
-            You work with me directly — not a revolving handoff.
+            Listing-first. You work with me directly — not a revolving handoff.
           </blockquote>
 
           <div class="space-y-5 text-lg text-stone-700 leading-relaxed">
             <p>
-              I’m a {site.title} with {site.brokerage}, based in <strong>Temecula</strong>.
+              I’m <strong>{site.nameWithCredentials}</strong>, a Listing Agent and {site.title} with {site.brokerage}, based in <strong>Temecula</strong>.
               I’ve held my California real estate license since
-              <strong> {site.licensedSince}</strong> — {years}+ years of guiding buyers and sellers through one of the most important financial decisions they’ll make.
+              <strong> {site.licensedSince}</strong> — {years}+ years as a licensed Realtor helping sellers bring homes and estates to market with focused, modern guidance.
             </p>
             <p>
-              My approach is practical and personal: clear communication, honest pricing conversations, and negotiation that protects your interests.
+              My primary focus is <strong>listings</strong>: pricing strategy, preparation, presentation, and negotiation designed to protect your equity. I also represent buyers when the fit is right — same direct access, same clear communication.
             </p>
             <p>
-              Whether you’re preparing to list in wine country, relocating into Temecula, or expanding a search toward Orange County, I’ll help you build a strategy that fits your timeline and risk tolerance.
+              Whether you’re preparing to list in wine country, relocating into Temecula, or expanding a search toward Orange County, I’ll help you build a strategy that fits your timeline and goals.
             </p>
           </div>
 

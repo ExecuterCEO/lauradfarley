@@ -1,6 +1,9 @@
 {
   "name": "Laura D. Farley",
+  "credentials": "MBA",
+  "nameWithCredentials": "Laura D. Farley, MBA",
   "title": "Broker Associate · REALTOR®",
+  "focus": "Listing Agent",
   "brokerage": "eXp Realty",
   "dre": "01723945",
   "phone": "949.554.9190",
@@ -11,7 +14,7 @@
     "Southwest Riverside County",
     "Orange County"
   ],
-  "primaryTagline": "Temecula real estate — clear guidance, strong negotiation, results since 2005.",
+  "primaryTagline": "Temecula listing specialist — focused, modern guidance for homes & estates. Also representing buyers. Licensed Realtor & Broker Associate since 2005.",
   "siteUrl": "https://lauradfarley.com",
   "headshot": "/images/laura-farley.jpg"
 }
