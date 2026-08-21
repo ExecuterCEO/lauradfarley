@@ -7,190 +7,420 @@ import areas from '../data/areas.json';
 
 const years = new Date().getFullYear() - site.licensedSince;
 const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+
+const whyLaura = [
+  {
+    title: 'You work with me directly',
+    body: 'From first call to closing, you get clear communication from your agent — not a revolving door of junior team members.',
+  },
+  {
+    title: 'Listing-first focus',
+    body: 'Sellers are my primary focus. Pricing, preparation, marketing, and negotiation are built to protect your equity.',
+  },
+  {
+    title: 'MBA-informed strategy',
+    body: 'My MBA background brings a business-minded approach to pricing, marketing decisions, and offer analysis — so choices stay grounded, not guesswork.',
+  },
+  {
+    title: 'Local Wine Country knowledge',
+    body: 'Temecula is home base, with guidance across Murrieta, Hacienda Heights, and Orange County when your move crosses markets.',
+  },
+  {
+    title: 'Honest guidance, no pressure',
+    body: 'If waiting, repairing, or adjusting price is the smarter move, you’ll hear it. My job is your outcome — not a rushed listing.',
+  },
+  {
+    title: 'Modern marketing basics, done well',
+    body: 'Professional presentation, strategic online exposure, and a clear plan for showings and feedback — so serious buyers can find you.',
+  },
+];
+
+const processSteps = [
+  {
+    n: '01',
+    title: 'Home consultation',
+    body: 'We walk your goals, timeline, property condition, and what “success” looks like for your next chapter.',
+  },
+  {
+    n: '02',
+    title: 'Pricing strategy',
+    body: 'Comparable sales, active competition, and buyer demand — a pricing plan designed to attract serious interest while protecting value.',
+  },
+  {
+    n: '03',
+    title: 'Prepare & present',
+    body: 'Practical prep priorities, professional photography direction, and listing presentation that matches how today’s buyers shop.',
+  },
+  {
+    n: '04',
+    title: 'Market with intention',
+    body: 'Targeted online exposure and a showing plan so the right buyers — not just more noise — see your home.',
+  },
+  {
+    n: '05',
+    title: 'Negotiate with care',
+    body: 'Offers, terms, repairs, and contingencies reviewed in plain language so you can decide with confidence.',
+  },
+  {
+    n: '06',
+    title: 'Close with clarity',
+    body: 'From accepted offer through escrow, you stay informed on next steps, dates, and what needs your attention.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How much is my Temecula home worth?',
+    a: 'A useful answer starts with recent comparable sales, current competition, condition, and location nuances — not a Zillow screenshot alone. I provide a complimentary market valuation and walk you through the “why,” not just a number.',
+  },
+  {
+    q: 'Is now a good time to sell?',
+    a: 'It depends on your equity position, timeline, local inventory, and what you need next. Sometimes the smartest move is to wait or prep first. I’ll give you a direct read for your situation.',
+  },
+  {
+    q: 'Do I need to make repairs before listing?',
+    a: 'Not always. We’ll separate high-ROI fixes from nice-to-haves so you don’t overspend. Presentation and pricing often matter more than a full remodel.',
+  },
+  {
+    q: 'Can I buy before I sell?',
+    a: 'Often yes, with the right structure — contingencies, bridge options, or sequenced timing. We’ll map the path that fits your risk tolerance and financing.',
+  },
+  {
+    q: 'What makes you different from other Realtors?',
+    a: 'Direct access to me, a listing-first practice, 21+ years as a licensed REALTOR®, and an MBA-informed approach to pricing and negotiation. I’m not trying to be everywhere — I’m focused on clear strategy and communication.',
+  },
+  {
+    q: 'Do you help with estates or more complex sales?',
+    a: 'Yes. Sensitive timelines, multiple decision-makers, and “what do we do first?” situations are welcome. We’ll start with a calm plan and next steps.',
+  },
+];
 ---
 
 <Layout
-  title="Temecula Listing Agent · REALTOR®"
-  description={`Laura D. Farley, MBA — Listing Agent & Broker Associate with eXp Realty. ${years}+ years licensed Realtor helping Temecula sellers (and buyers) with focused, modern guidance. Free home valuation. DRE# ${site.dre}.`}
+  title="Temecula Listing Agent · Sell Your Home with Confidence"
+  description={`Laura D. Farley, MBA — Temecula Listing Agent & Broker Associate with ${site.brokerage}. ${years}+ years licensed REALTOR® helping sellers (and buyers) in Temecula Wine Country, Murrieta, Hacienda Heights, and Orange County. Free home valuation. DRE# ${site.dre}.`}
 >
   <Navbar />
 
-  <!-- Hero: luxury interior background (user-provided sanctuary image) -->
-  <header class="relative overflow-hidden min-h-[86vh] flex flex-col justify-center">
+  <!-- ========== HERO ========== -->
+  <header class="relative overflow-hidden min-h-[88vh] flex flex-col justify-center">
     <div class="absolute inset-0">
       <img
         src="/images/hero-sanctuary.jpg"
-        alt="Bright luxury living room with crystal chandelier"
+        alt="Bright luxury living room — Temecula home inspiration"
         class="w-full h-full object-cover object-center"
         width="1600"
         height="900"
       />
-      <!-- Soft Chantilly Lace veil so sage/charcoal type stays readable -->
-      <div class="absolute inset-0 bg-gradient-to-r from-[rgba(246,247,242,0.90)] via-[rgba(246,247,242,0.55)] to-[rgba(246,247,242,0.12)]"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[rgba(246,247,242,0.58)] via-transparent to-[rgba(246,247,242,0.22)]"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[rgba(246,247,242,0.92)] via-[rgba(246,247,242,0.62)] to-[rgba(246,247,242,0.14)]"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[rgba(246,247,242,0.62)] via-transparent to-[rgba(246,247,242,0.22)]"></div>
     </div>
 
     <div class="relative max-w-6xl mx-auto px-5 sm:px-6 py-16 sm:py-24 w-full">
       <div class="max-w-2xl">
         <p class="text-[var(--sage)] text-[11px] sm:text-xs font-medium tracking-[0.28em] uppercase mb-5">
-          Listing Agent · Temecula · {site.brokerage}
+          Temecula Listing Agent · {site.brokerage} · DRE# {site.dre}
         </p>
-        <h1 class="font-serif text-[var(--sage-ink)] text-5xl sm:text-6xl lg:text-7xl leading-[0.98] tracking-[0.02em]">
-          Discover your<br />sanctuary.
+        <h1 class="font-serif text-[var(--sage-ink)] text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-[0.01em]">
+          Selling your Temecula home<br class="hidden sm:block" /> doesn’t have to be stressful.
         </h1>
         <p class="mt-6 text-base sm:text-lg max-w-xl leading-relaxed text-[var(--sage-deep)] font-light">
-          Temecula homes &amp; estates with focused, modern guidance — {years}+ years licensed Realtor · Broker Associate.
+          Expert pricing, strategic marketing, and personal guidance from listing to closing —
+          from a licensed REALTOR® and Broker Associate with {years}+ years of experience and an MBA-informed approach.
+        </p>
+        <p class="mt-4 text-sm sm:text-base max-w-xl leading-relaxed text-[var(--muted)]">
+          Your home is likely one of your largest financial assets. You deserve an agent who protects your equity,
+          negotiates carefully, and keeps you informed every step of the way.
         </p>
       </div>
 
-      <!-- Frosted CTA bar — listing-first -->
       <div class="mt-10 max-w-3xl rounded-full border border-white/70 bg-white/55 backdrop-blur-md shadow-[0_18px_50px_rgba(79,92,76,0.12)] p-2 sm:p-2.5">
         <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
-          <a href="/sell#valuation" class="btn-primary flex-1 text-center !py-3">Home value</a>
+          <a href="#valuation" class="btn-primary flex-1 text-center !py-3">What is my home worth?</a>
           <a href="/sell" class="btn-sage-soft flex-1 text-center">I want to sell</a>
           <a href="/buy" class="btn-sage-soft flex-1 text-center">I want to buy</a>
-          <a href="/contact" class="btn-sage-soft flex-1 text-center">Connect</a>
+          <a href="#consult" class="btn-sage-soft flex-1 text-center">Free consultation</a>
         </div>
       </div>
 
-      <dl class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-xl">
+      <dl class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl">
         <div>
           <dt class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)]">{years}+</dt>
-          <dd class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] mt-1">Years licensed Realtor</dd>
+          <dd class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] mt-1">Years licensed</dd>
         </div>
         <div>
-          <dt class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)]">Listings</dt>
+          <dt class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)]">Listing</dt>
           <dd class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] mt-1">Primary focus</dd>
         </div>
-        <div class="col-span-2 sm:col-span-1">
-          <dt class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)]">Temecula</dt>
-          <dd class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] mt-1">Homes &amp; estates</dd>
+        <div>
+          <dt class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)]">MBA</dt>
+          <dd class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] mt-1">Business approach</dd>
+        </div>
+        <div>
+          <dt class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)]">Direct</dt>
+          <dd class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] mt-1">Access to Laura</dd>
         </div>
       </dl>
     </div>
   </header>
 
-  <!-- Meet your agent -->
+  <!-- ========== TRUST BADGES ========== -->
+  <section class="bg-white border-b border-[var(--line)]" aria-label="Credentials">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] sm:text-xs tracking-[0.14em] uppercase text-[var(--muted)]">
+      <span class="font-semibold text-[var(--sage-deep)]">REALTOR®</span>
+      <span class="opacity-30">·</span>
+      <span>Broker Associate</span>
+      <span class="opacity-30">·</span>
+      <span>MBA</span>
+      <span class="opacity-30">·</span>
+      <span>{site.brokerage}</span>
+      <span class="opacity-30">·</span>
+      <span>DRE# {site.dre}</span>
+      <span class="opacity-30">·</span>
+      <span>Equal Housing Opportunity</span>
+    </div>
+  </section>
+
+  <!-- ========== HOMEOWNER PROBLEM ========== -->
+  <section class="bg-[var(--ivory)] border-b border-[var(--line)]">
+    <div class="max-w-3xl mx-auto px-5 sm:px-6 py-16 sm:py-20 text-center">
+      <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">For homeowners</p>
+      <h2 class="font-serif text-3xl sm:text-5xl text-[var(--sage-ink)] leading-tight">
+        You don’t need more noise.<br class="hidden sm:block" /> You need a clear plan.
+      </h2>
+      <p class="mt-6 text-[var(--muted)] text-base sm:text-lg leading-relaxed">
+        Selling can feel overwhelming — pricing fears, repair questions, showings, offers, and “what if we guess wrong?”
+        Whether you’re moving across town or across the country, you deserve a Temecula listing agent who explains the
+        market in plain language, protects your leverage, and stays reachable when decisions get real.
+      </p>
+      <p class="mt-5 text-[var(--sage-deep)] leading-relaxed font-medium">
+        That’s the standard I hold myself to — for sellers first, and for buyers who want the same level of care.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== WHY LAURA ========== -->
+  <section class="bg-white border-b border-[var(--line)]" id="why-laura">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-2xl mb-12">
+        <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">Why homeowners choose Laura</p>
+        <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] leading-tight">
+          Real reasons — not Realtor clichés
+        </h2>
+        <p class="mt-4 text-[var(--muted)] leading-relaxed">
+          Almost every agent promises honesty and communication. Here’s what working together actually looks like.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {whyLaura.map((item) => (
+          <div class="listing-card p-6">
+            <div class="text-[var(--sage)] text-lg mb-2">✓</div>
+            <h3 class="font-serif text-2xl text-[var(--sage-ink)] leading-snug">{item.title}</h3>
+            <p class="text-sm text-[var(--muted)] mt-3 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MEET LAURA ========== -->
   <section class="relative bg-[var(--ivory)] border-b border-[var(--line)] overflow-hidden">
     <div class="pointer-events-none absolute left-4 top-10 leaf-deco hidden md:block" aria-hidden="true">
       <svg width="72" height="120" viewBox="0 0 72 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 10c18 18 22 42 8 70-10 20-28 30-28 30s8-22 6-42C4 42 12 22 20 10z" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M28 24c14 14 16 34 6 56" stroke="currentColor" stroke-width="1"/>
-        <path d="M40 8c16 20 18 46 4 74" stroke="currentColor" stroke-width="1"/>
+        <path d="M20 10c18 18 22 42 8 70-10 20-28 30-28 30s8-22 6-42C4 42 12 22 20 10z" stroke="currentColor" stroke-width="1.2"></path>
+        <path d="M28 24c14 14 16 34 6 56" stroke="currentColor" stroke-width="1"></path>
+        <path d="M40 8c16 20 18 46 4 74" stroke="currentColor" stroke-width="1"></path>
       </svg>
     </div>
     <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">Listing Agent · Broker Associate</p>
+        <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">Meet your agent</p>
         <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] leading-tight tracking-wide">
-          Meet your agent
-        </h2>
-        <p class="mt-3 font-serif text-2xl sm:text-3xl text-[var(--sage-deep)] tracking-wide">
           {site.nameWithCredentials}
-        </p>
-        <p class="mt-1 text-sm text-[var(--muted)] tracking-wide">
-          {site.title} · {site.brokerage}
+        </h2>
+        <p class="mt-2 text-sm text-[var(--muted)] tracking-wide">
+          {site.focus} · {site.title} · {site.brokerage}
         </p>
         <div class="mt-8 flex gap-5 items-start">
           <img
             src={site.headshot}
             alt={site.nameWithCredentials}
-            class="w-20 h-20 rounded-full object-cover object-top border border-[var(--line)] shadow-sm"
-            width="160"
-            height="160"
+            class="w-24 h-24 rounded-full object-cover object-top border border-[var(--line)] shadow-sm shrink-0"
+            width="192"
+            height="192"
           />
-          <div>
-            <p class="text-[var(--muted)] leading-relaxed">
-              Broker Associate with {site.brokerage}. {years}+ years guiding Sellers and Buyers with clear communication and careful negotiation. Dedicated to working with you directly to fulfill your real estate needs start to finish.
+          <div class="space-y-4 text-[var(--muted)] leading-relaxed">
+            <p>
+              Real estate isn’t just contracts — it’s helping people navigate one of life’s biggest financial decisions
+              with a clear head.
             </p>
-            <a href={`tel:${phoneTel}`} class="inline-block mt-3 text-sm font-medium text-[var(--sage-deep)] hover:underline tracking-wide">
-              {site.phone}
-            </a>
+            <p>
+              For more than two decades I’ve helped California homeowners sell with confidence by combining strategic
+              pricing, strong negotiation, and honest communication. My MBA background shapes how I evaluate risk,
+              present options, and keep recommendations practical.
+            </p>
+            <p>
+              Today my focus is Temecula homes and estates — including Wine Country lifestyle properties — with service
+              also available in Murrieta, Hacienda Heights, and Orange County.
+            </p>
           </div>
         </div>
-        <a href="/about" class="btn-outline mt-8">More about Laura</a>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`tel:${phoneTel}`} class="btn-primary">Call or text {site.phone}</a>
+          <a href="/about" class="btn-outline">More about Laura</a>
+        </div>
       </div>
 
       <div class="grid sm:grid-cols-2 gap-4">
-        <a href="/sell" class="listing-card p-6 block group ring-1 ring-[var(--sage)]/25">
+        <a href="/sell#valuation" class="listing-card p-6 block group ring-1 ring-[var(--sage)]/25">
           <div class="text-[10px] tracking-[0.18em] uppercase text-[var(--sage)] font-semibold mb-2">Sellers · Primary</div>
-          <h3 class="font-serif text-2xl text-[var(--sage-ink)] group-hover:text-[var(--sage-deep)] transition">List with confidence</h3>
-          <p class="text-sm text-[var(--muted)] mt-3 leading-relaxed">Complimentary market valuation and a clear listing plan for your Temecula home or estate.</p>
-          <div class="mt-5 text-[var(--sage-deep)] text-xs font-semibold tracking-[0.14em] uppercase">Get free valuation →</div>
+          <h3 class="font-serif text-2xl text-[var(--sage-ink)] group-hover:text-[var(--sage-deep)] transition">
+            List with a plan
+          </h3>
+          <p class="text-sm text-[var(--muted)] mt-3 leading-relaxed">
+            Complimentary market valuation and a clear listing strategy for your Temecula home or estate.
+          </p>
+          <div class="mt-5 text-[var(--sage-deep)] text-xs font-semibold tracking-[0.14em] uppercase">
+            Find out what your home is worth →
+          </div>
         </a>
         <a href="/buy" class="listing-card p-6 block group">
-          <div class="text-[10px] tracking-[0.18em] uppercase text-[var(--sage)] font-semibold mb-2">Buyers</div>
-          <h3 class="font-serif text-2xl text-[var(--sage-ink)] group-hover:text-[var(--sage-deep)] transition">Find your next home</h3>
-          <p class="text-sm text-[var(--muted)] mt-3 leading-relaxed">Also representing buyers — strategy before you write the offer: neighborhoods, pricing, timing.</p>
-          <div class="mt-5 text-[var(--sage-deep)] text-xs font-semibold tracking-[0.14em] uppercase">Start buyer consult →</div>
+          <div class="text-[10px] tracking-[0.18em] uppercase text-[var(--sage)] font-semibold mb-2">Buyers welcome</div>
+          <h3 class="font-serif text-2xl text-[var(--sage-ink)] group-hover:text-[var(--sage-deep)] transition">
+            Buy with strategy
+          </h3>
+          <p class="text-sm text-[var(--muted)] mt-3 leading-relaxed">
+            Neighborhood fit, pricing reality, and offer strategy — before you write anything you’ll regret.
+          </p>
+          <div class="mt-5 text-[var(--sage-deep)] text-xs font-semibold tracking-[0.14em] uppercase">
+            Schedule a buyer consult →
+          </div>
+        </a>
+        <a href="/areas/temecula" class="listing-card p-6 block group sm:col-span-2">
+          <div class="text-[10px] tracking-[0.18em] uppercase text-[var(--sage)] font-semibold mb-2">Wine Country</div>
+          <h3 class="font-serif text-2xl text-[var(--sage-ink)] group-hover:text-[var(--sage-deep)] transition">
+            Moving to Temecula Wine Country?
+          </h3>
+          <p class="text-sm text-[var(--muted)] mt-3 leading-relaxed">
+            Local guidance for buyers drawn to vineyards, lifestyle, and Southwest Riverside living — and for sellers
+            who want that story told well.
+          </p>
+          <div class="mt-5 text-[var(--sage-deep)] text-xs font-semibold tracking-[0.14em] uppercase">
+            Explore Temecula area guidance →
+          </div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Trust strip -->
-  <section class="bg-white border-b border-[var(--line)]">
-    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-10 grid sm:grid-cols-3 gap-8 text-center sm:text-left">
-      <div>
-        <div class="font-serif text-2xl text-[var(--sage-ink)]">Listing strategy</div>
-        <p class="text-sm text-[var(--muted)] mt-2">Pricing, prep, marketing, and negotiation designed to protect your equity — my primary focus.</p>
+  <!-- ========== PROCESS ========== -->
+  <section class="bg-white border-b border-[var(--line)]" id="process">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-2xl mb-12">
+        <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">Selling made simpler</p>
+        <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] leading-tight">
+          A clear path from “thinking about it” to closed
+        </h2>
+        <p class="mt-4 text-[var(--muted)] leading-relaxed">
+          Many sellers have never listed a home — or haven’t in years. Here’s how we work together, step by step.
+        </p>
       </div>
-      <div>
-        <div class="font-serif text-2xl text-[var(--sage-ink)]">Buyer representation</div>
-        <p class="text-sm text-[var(--muted)] mt-2">Also available for buyers — local insight across Temecula wine country and nearby communities.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {processSteps.map((step) => (
+          <div class="listing-card p-6">
+            <div class="font-serif text-3xl text-[var(--sage)] mb-2">{step.n}</div>
+            <h3 class="font-serif text-2xl text-[var(--sage-ink)]">{step.title}</h3>
+            <p class="text-sm text-[var(--muted)] mt-3 leading-relaxed">{step.body}</p>
+          </div>
+        ))}
       </div>
-      <div>
-        <div class="font-serif text-2xl text-[var(--sage-ink)]">Direct access</div>
-        <p class="text-sm text-[var(--muted)] mt-2">Call/text {site.phone} · {site.email}</p>
+      <div class="mt-10">
+        <a href="/sell" class="btn-primary">See seller services in detail</a>
       </div>
     </div>
   </section>
 
-  <!-- Areas -->
-  <section class="bg-[var(--ivory)]">
-    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16">
-      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
-        <div>
-          <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-2">Where I work</p>
-          <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)]">Areas served</h2>
-          <p class="text-[var(--muted)] mt-3 max-w-xl">
-            Local guidance across Temecula, Murrieta, Hacienda Heights, and Orange County.
-          </p>
-        </div>
-        <a href="/areas" class="text-[var(--sage-deep)] text-xs font-semibold tracking-[0.16em] uppercase hover:underline">View all areas →</a>
+  <!-- ========== MARKET EXPERTISE ========== -->
+  <section class="bg-[var(--ivory)] border-b border-[var(--line)]">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">Local market expertise</p>
+        <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] leading-tight">
+          Temecula isn’t one market — it’s many micro-markets
+        </h2>
+        <p class="mt-5 text-[var(--muted)] leading-relaxed">
+          Understanding neighborhood trends, buyer demand, pricing strategy, and seasonal patterns helps position your
+          home to attract serious buyers — whether you’re in a master-planned community, a Wine Country-adjacent
+          property, or an established neighborhood with its own comps and buyer profile.
+        </p>
+        <p class="mt-4 text-[var(--muted)] leading-relaxed">
+          I also help clients connecting moves between Temecula, Murrieta, Hacienda Heights, and Orange County — so
+          your next step isn’t treated like a generic statewide transaction.
+        </p>
+        <a href="/areas" class="btn-outline mt-8">View areas served</a>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid sm:grid-cols-2 gap-4">
         {areas.map((a) => (
           <a href={`/areas/${a.slug}`} class="listing-card p-5 block">
             <div class="font-serif text-2xl text-[var(--sage-ink)]">{a.name}</div>
             <div class="text-[10px] tracking-[0.14em] uppercase text-[var(--sage)] mt-1">{a.region}</div>
-            <p class="text-sm text-[var(--muted)] mt-3 line-clamp-3">{a.blurb}</p>
+            <p class="text-sm text-[var(--muted)] mt-3 line-clamp-4">{a.blurb}</p>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Form -->
-  <section class="max-w-6xl mx-auto px-5 sm:px-6 py-16 grid lg:grid-cols-2 gap-12 items-start">
-    <div>
-      <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">Let’s talk</p>
-      <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mb-6">Request a callback</h2>
-      <blockquote class="pull-quote mb-8">
-        “Clear communication, honest pricing conversations, and negotiation that protects your interests.”
-      </blockquote>
-      <ul class="space-y-3 text-[var(--muted)]">
+  <!-- ========== FAQ ========== -->
+  <section class="bg-white border-b border-[var(--line)]" id="faq">
+    <div class="max-w-3xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
+      <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">FAQ</p>
+      <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] leading-tight mb-10">
+        Questions sellers already have
+      </h2>
+      <div class="space-y-4">
+        {faqs.map((item) => (
+          <details class="listing-card group p-5 sm:p-6">
+            <summary class="font-serif text-xl sm:text-2xl text-[var(--sage-ink)] cursor-pointer list-none flex items-start justify-between gap-4">
+              <span>{item.q}</span>
+              <span class="text-[var(--sage)] text-lg shrink-0 group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-[var(--muted)] leading-relaxed text-sm sm:text-base">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLOSING + FORM ========== -->
+  <section class="max-w-6xl mx-auto px-5 sm:px-6 py-16 sm:py-20 grid lg:grid-cols-2 gap-12 items-start" id="consult">
+    <div id="valuation">
+      <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium mb-3">Ready when you are</p>
+      <h2 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mb-6 leading-tight">
+        Ready to make your next move?
+      </h2>
+      <p class="text-[var(--muted)] leading-relaxed mb-5">
+        Whether you’re thinking about selling next month or simply want to know what your home is worth, I’m happy to
+        provide honest advice and a personalized strategy. There’s no pressure — just a conversation focused on your goals.
+      </p>
+      <ul class="space-y-3 text-[var(--muted)] mb-8">
         <li class="flex gap-2"><span class="text-[var(--sage)]">✓</span> {site.nameWithCredentials} · {site.title}</li>
         <li class="flex gap-2"><span class="text-[var(--sage)]">✓</span> Listing-first · California REALTOR® (DRE# {site.dre})</li>
-        <li class="flex gap-2"><span class="text-[var(--sage)]">✓</span> Temecula homes &amp; estates · direct line, no handoff</li>
+        <li class="flex gap-2"><span class="text-[var(--sage)]">✓</span> Temecula Wine Country · Murrieta · Hacienda Heights · OC</li>
+        <li class="flex gap-2"><span class="text-[var(--sage)]">✓</span> Direct line — call or text <a class="underline text-[var(--sage-deep)]" href={`tel:${phoneTel}`}>{site.phone}</a></li>
+        <li class="flex gap-2"><span class="text-[var(--sage)]">✓</span> <a class="underline text-[var(--sage-deep)]" href={`mailto:${site.email}`}>{site.email}</a></li>
       </ul>
+      <blockquote class="pull-quote">
+        “Clear communication, honest pricing conversations, and negotiation that protects your interests.”
+      </blockquote>
     </div>
     <LeadForm
       formName="home-lead"
-      heading=""
-      subheading="Selling is my primary focus — buyers welcome too. I typically respond within one business day."
-      submitLabel="Request callback"
-      intentDefault="sell"
+      heading="Schedule your free consultation"
+      subheading="Tell me about your home or move. Selling is my primary focus — buyers are welcome too. I typically respond within one business day."
+      submitLabel="Let’s talk about your home"
+      intentDefault="valuation"
+      showPropertyFields={true}
     />
   </section>
 </Layout>
