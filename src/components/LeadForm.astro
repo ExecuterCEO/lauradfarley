@@ -1,4 +1,6 @@
 ---
+import site from '../data/site.json';
+
 interface Props {
   formName: string;
   heading?: string;
@@ -12,12 +14,16 @@ interface Props {
 const {
   formName,
   heading = 'Get in touch',
-  subheading = 'Tell me a little about your goals. I’ll follow up personally.',
+  subheading = 'Tell me a little about your goals. I will follow up personally.',
   submitLabel = 'Send message',
   intentDefault = 'general',
   showPropertyFields = false,
   class: className = '',
 } = Astro.props;
+
+// Static-host friendly: FormSubmit delivers to Laura's inbox (works on GitHub Pages / any CDN)
+const formAction = `https://formsubmit.co/${site.email}`;
+const thanksUrl = new URL('/thank-you/', site.siteUrl).toString();
 ---
 
 <div class:list={['bg-white border border-[var(--line)] rounded-[1.5rem] p-6 sm:p-8 shadow-[0_12px_40px_rgba(79,92,76,0.06)]', className]}>
@@ -27,15 +33,16 @@ const {
   <form
     name={formName}
     method="POST"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-    action="/thank-you"
+    action={formAction}
     class="space-y-4"
   >
+    <input type="hidden" name="_subject" value={`lauradfarley.com lead (${formName})`} />
+    <input type="hidden" name="_next" value={thanksUrl} />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
     <input type="hidden" name="form-name" value={formName} />
-    <p class="hidden" aria-hidden="true">
-      <label>Don’t fill this out: <input name="bot-field" /></label>
-    </p>
+    <input type="hidden" name="source_site" value="lauradfarley.com" />
 
     <div class="grid sm:grid-cols-2 gap-4">
       <div>
@@ -54,7 +61,7 @@ const {
     </div>
 
     <div>
-      <label class="label" for={`${formName}-intent`}>I’m interested in *</label>
+      <label class="label" for={`${formName}-intent`}>I am interested in *</label>
       <select class="input" id={`${formName}-intent`} name="intent" required>
         <option value="valuation" selected={intentDefault === 'valuation'}>Home valuation / selling</option>
         <option value="buy" selected={intentDefault === 'buy'}>Buying a home</option>
