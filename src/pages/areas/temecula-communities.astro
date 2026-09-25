@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import site from '../../data/site.json';
+import communities from '../../data/temecula-communities.json';
+
+const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
+---
+
+<Layout
+  title="Top Temecula Communities"
+  description={`Chardonnay Hills, Crowne Hill, Harveston, Morgan Hill, Paloma Del Sol, Wolf Creek, Meadowview, Temeku Hills, De Luz, and Redhawk — independent Temecula community notes from Laura D. Farley, MBA, ${site.brokerage}. DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main>
+    <section class="bg-[var(--sage-deep)] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6 py-14">
+        <a href="/areas/temecula" class="text-white/70 text-sm hover:text-white">← Temecula real estate</a>
+        <p class="text-[11px] tracking-[0.22em] uppercase text-white/70 font-medium mt-4">Temecula Valley</p>
+        <h1 class="font-serif text-4xl sm:text-5xl mt-2">Top Temecula communities</h1>
+        <p class="mt-5 text-lg text-white/85 max-w-3xl leading-relaxed">
+          Neighborhood choice is daily life: commute, parks, HOA, tax, and whether you want Wine Country, a lake loop, or acreage.
+          This is my working order for tours, with Chardonnay Hills first, Crowne Hill second, and Redhawk last so we compare
+          the famous name against quieter fits. I represent sellers and buyers with equal care.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-5 sm:px-6 py-10 text-[var(--muted)] leading-relaxed">
+      <p>
+        HOA dues, Mello-Roos, and tax rates change by tract and year. Figures people quote in conversation are a starting
+        point only. Confirm the current bill, CC&amp;Rs, and amenities on the specific property before you write an offer.
+        Photos below are orientation images, not a promise of a particular lot, monument, or listing.
+      </p>
+    </section>
+
+    <div class="max-w-3xl mx-auto px-5 sm:px-6 pb-6">
+      <ol class="flex flex-wrap gap-2 text-xs tracking-wide uppercase text-[var(--sage-deep)]">
+        {communities.map((c, i) => (
+          <li>
+            <a href={`#${c.slug}`} class="inline-block px-3 py-1.5 rounded-full border border-[var(--line)] bg-white hover:border-[var(--sage)]">
+              {i + 1}. {c.name}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    {communities.map((c, i) => (
+      <article id={c.slug} class="border-t border-[var(--line)]">
+        <div class="max-w-3xl mx-auto px-5 sm:px-6 py-14">
+          <p class="text-[11px] tracking-[0.2em] uppercase text-[var(--sage)] font-medium">
+            {String(i + 1).padStart(2, '0')} · {c.tag}
+          </p>
+          <h2 class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)] mt-2">{c.name}</h2>
+          <img
+            src={c.image}
+            alt={c.imageAlt}
+            class="mt-6 w-full rounded-3xl object-cover aspect-[16/9] border border-[var(--line)]"
+            width="1200"
+            height="675"
+          />
+          <div class="mt-8 space-y-4 text-[var(--muted)] leading-relaxed">
+            {c.body.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+
+    <section class="bg-[var(--ivory)] border-t border-[var(--line)]">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6 py-16 grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)]">Once you have a shortlist</h2>
+          <p class="mt-4 text-[var(--muted)] leading-relaxed">
+            We will tour the streets that match your commute and budget, then get you inside the homes that fit.
+            If you are selling, we will price against the same neighborhood comps buyers are already watching.
+          </p>
+          <p class="mt-4 text-sm text-[var(--muted)]">
+            {site.nameWithCredentials}, {site.title}, {site.brokerage}, DRE# {site.dre}.
+            Call or text <a class="underline" href={`tel:${phoneTel}`}>{site.phone}</a>.
+          </p>
+        </div>
+        <LeadForm
+          formName="temecula-communities"
+          heading="Talk Temecula neighborhoods"
+          subheading="Tell me which communities are on your list, or ask for a valuation if you already live in one."
+          submitLabel="Send message"
+          intentDefault="general"
+          showPropertyFields={true}
+        />
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -45,6 +45,14 @@ const { area } = Astro.props;
         <p class="text-sm text-stone-500">
           Working with {site.name}, {site.title}, {site.brokerage}, DRE# {site.dre}.
         </p>
+        {area.slug === 'temecula' && (
+          <a
+            href="/areas/temecula-communities"
+            class="inline-block mt-6 font-semibold text-[var(--sage-deep)] hover:underline"
+          >
+            Top Temecula communities →
+          </a>
+        )}
       </div>
       <LeadForm
         formName={`area-${area.slug}`}
