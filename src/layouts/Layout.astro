@@ -45,7 +45,7 @@ const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
     ></script>
   </head>
   <body class="antialiased">
-    <div class="bg-[var(--sage-deep)] text-white text-center px-4 py-2.5">
+    <div class="hidden md:block bg-[var(--sage-deep)] text-white text-center px-4 py-2.5">
       <div class="font-serif text-sm sm:text-base tracking-wide text-white">
         {site.nameWithCredentials}
       </div>

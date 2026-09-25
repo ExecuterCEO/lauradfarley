@@ -14,14 +14,14 @@ const links = [
 ---
 
 <nav class="bg-[color:var(--ivory)]/95 backdrop-blur-md border-b border-[color:var(--line)] sticky top-0 z-50" id="site-nav">
-  <div class="max-w-6xl mx-auto px-5 sm:px-6 h-[4.75rem] flex items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-3 min-w-0 group">
-      <div class="min-w-0 text-center sm:text-left">
-        <div class="font-serif text-xl sm:text-2xl text-[var(--sage-ink)] tracking-[0.08em] uppercase leading-none">
-          {site.name}
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 min-h-[4.75rem] py-3 flex items-center justify-between gap-3">
+    <a href="/" class="flex items-center gap-3 min-w-0 flex-1 group">
+      <div class="min-w-0 text-left">
+        <div class="font-serif text-lg sm:text-2xl text-[var(--sage-ink)] tracking-[0.04em] leading-tight">
+          {site.nameWithCredentials}
         </div>
-        <div class="text-[9px] sm:text-[10px] text-[var(--sage)] mt-1 tracking-[0.28em] uppercase font-medium">
-          Listing Agent · {site.brokerage}
+        <div class="text-[9px] sm:text-[10px] text-[var(--sage)] mt-1 tracking-[0.12em] uppercase font-medium leading-snug">
+          Listing Agent <span class="opacity-50">•</span> Broker Associate <span class="opacity-50">•</span> {site.brokerage}
         </div>
       </div>
     </a>
