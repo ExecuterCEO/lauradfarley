@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import LeadForm from '../components/LeadForm.astro';
+import site from '../data/site.json';
+
+const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
+---
+
+<Layout
+  title="1031 Exchanges, Including Multi-State"
+  description={`How a 1031 exchange works in practice: timelines, qualified intermediaries, and multi-state replacement property. Laura D. Farley, MBA, ${site.brokerage}. Not tax advice. DRE# ${site.dre}.`}
+>
+  <Navbar />
+  <main>
+    <section class="bg-[var(--sage-deep)] text-white">
+      <div class="max-w-3xl mx-auto px-5 sm:px-6 py-14">
+        <p class="text-[11px] tracking-[0.22em] uppercase text-white/70 font-medium">Investment property</p>
+        <h1 class="font-serif text-4xl sm:text-5xl mt-3 leading-tight">
+          1031 exchanges, including multi-state
+        </h1>
+        <p class="mt-5 text-lg text-white/85 leading-relaxed">
+          A 1031 is a tax-timed sale and purchase, not a casual “sell this, buy that.” I have closed exchange
+          transactions, including replacement property in another state. I do not give tax advice. I keep the
+          real estate calendar honest so your CPA and qualified intermediary can do their jobs.
+        </p>
+      </div>
+    </section>
+
+    <article class="max-w-3xl mx-auto px-5 sm:px-6 py-14 space-y-6 text-[var(--muted)] text-lg leading-relaxed">
+      <p class="text-sm tracking-wide uppercase text-[var(--sage)]">
+        Educational overview · Not tax, legal, or accounting advice
+      </p>
+
+      <p>
+        Section 1031 of the Internal Revenue Code lets some investors defer capital-gain tax when they sell real
+        property held for investment or productive use in a trade or business and acquire like-kind real property
+        on a qualifying timeline. The rules are federal. Your facts are personal. Before you list anything, sit
+        with a CPA or tax attorney who knows your basis, depreciation, and whether an exchange even helps you.
+      </p>
+
+      <h2 class="font-serif text-3xl text-[var(--sage-ink)] pt-4">What I actually do on a 1031</h2>
+      <p>
+        My role is the real estate side: pricing and selling the relinquished property, finding and negotiating
+        replacement property, and keeping every date visible. A delayed exchange usually runs through a qualified
+        intermediary (QI). Sale proceeds do not come to you. They go to the QI. If you touch the money, the
+        exchange can fail. That is why the QI is engaged <em>before</em> closing, not the afternoon of.
+      </p>
+      <p>
+        I coordinate listing strategy with that calendar. A 1031 seller cannot treat “we will see what happens in
+        escrow” as a plan. Buyers, HOAs, inspections, and lender conditions still apply. The difference is that
+        your identification window does not pause because a repair credit is messy.
+      </p>
+
+      <h2 class="font-serif text-3xl text-[var(--sage-ink)] pt-4">The clocks that run the file</h2>
+      <p>
+        In a typical delayed exchange you have <strong>45 days</strong> from the sale closing to identify replacement
+        property in writing, and <strong>180 days</strong> (or the tax-return due date, if earlier) to close on it.
+        Those are calendar days, including weekends. Identification rules (how many properties, what percentage of
+        value) are technical. Your QI and tax counsel set the written identification. I help you tour and underwrite
+        enough real options that the list you sign is not a fantasy.
+      </p>
+      <p>
+        Debt matters. If you walk away from a mortgage on the way out and buy all-cash on the way in, you can create
+        “boot” and a tax bill you thought you deferred. Replacement value and equity have to be sized with your
+        advisor, not guessed from a listing printout.
+      </p>
+
+      <h2 class="font-serif text-3xl text-[var(--sage-ink)] pt-4">Like-kind, after the tax-law changes</h2>
+      <p>
+        For exchanges after 2017, 1031 treatment is generally limited to <strong>real property</strong>. Personal
+        property that used to qualify often does not. Land, rental houses, and many commercial buildings can still
+        be like-kind to one another even if the use looks different on the ground. A Temecula rental can, in the
+        right structure, be exchanged for property in another state. Whether <em>your</em> asset qualifies is a tax
+        question. I will not stretch a primary residence into an investment story because the word “1031” sounds
+        efficient.
+      </p>
+
+      <h2 class="font-serif text-3xl text-[var(--sage-ink)] pt-4">Multi-state exchanges</h2>
+      <p>
+        I have worked exchanges where the replacement property was not in California. The tax deferral is federal;
+        the closings are local. Title companies, disclosure forms, water and well issues, HOA estoppels, and
+        recording customs change at the state line. A California seller used to three-day disclosures can be
+        surprised by another state’s contract. A buyer in a different time zone can miss an identification deadline
+        because everyone assumed “next week” was the same week.
+      </p>
+      <p>
+        Multi-state work is a coordination problem. I stay on the California listing (or the California purchase)
+        and work with the cooperating broker, title, and QI so the two escrows do not pretend they are one file.
+        You still need tax counsel in the state that actually taxes you. I am not that person.
+      </p>
+
+      <h2 class="font-serif text-3xl text-[var(--sage-ink)] pt-4">What usually goes wrong</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Listing before the QI and CPA are in place.</li>
+        <li>Identifying properties you cannot actually close, then scrambling on day 44.</li>
+        <li>Ignoring HOA, insurance, or lender timelines on the replacement side.</li>
+        <li>Treating a 1031 as a reason to overpay so the clock does not expire.</li>
+        <li>Assuming a second home you use yourself is automatically investment property.</li>
+      </ul>
+      <p>
+        The cure is boring: a written calendar, a QI already engaged, and replacement tours that start before the
+        relinquished property closes, not after you are on vacation.
+      </p>
+
+      <h2 class="font-serif text-3xl text-[var(--sage-ink)] pt-4">Who this is for</h2>
+      <p>
+        Investors and business owners who hold real property and are ready to sell one asset and buy another without
+        treating the gain as a windfall checking-account event. It is not a loophole for flipping a house you live in.
+        It is not a substitute for a market-price listing. If values are soft, we still have to attract a buyer on
+        the way out, or there is nothing to exchange.
+      </p>
+      <p>
+        If you are also moving household, that is a separate transaction. We can list a home and run an investment
+        1031 in the same season. We do not mix the two files just because both have my name on them.
+      </p>
+
+      <h2 class="font-serif text-3xl text-[var(--sage-ink)] pt-4">How we start</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>You talk to your CPA about whether a 1031 helps <em>your</em> tax picture.</li>
+        <li>We interview a qualified intermediary and get the assignment documents ready.</li>
+        <li>I price and list the property you are leaving, with the exchange language in the contract.</li>
+        <li>We build a replacement shortlist early enough to identify in writing inside 45 days.</li>
+        <li>We close the purchase on the QI’s instructions, not on a handshake.</li>
+      </ol>
+      <p>
+        {site.nameWithCredentials}, Broker Associate, {site.brokerage}, DRE# {site.dre}. Call or text
+        <a class="underline text-[var(--sage-deep)]" href={`tel:${phoneTel}`}>{site.phone}</a>,
+        or send the form. Bring your tax advisor into the first real conversation, not the last.
+      </p>
+    </article>
+
+    <section class="bg-[var(--ivory)] border-t border-[var(--line)]">
+      <div class="max-w-3xl mx-auto px-5 sm:px-6 py-16">
+        <LeadForm
+          formName="1031-exchange"
+          heading="Talk through a 1031"
+          subheading="Tell me what you may sell, where you might buy, and whether a CPA is already involved. I will follow up personally."
+          submitLabel="Send message"
+          intentDefault="sell"
+          showPropertyFields={true}
+        />
+      </div>
+    </section>
+  </main>
+</Layout>
