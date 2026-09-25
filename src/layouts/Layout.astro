@@ -12,7 +12,6 @@ const {
   description = `${site.name} — ${site.title} with ${site.brokerage}. Helping buyers and sellers in Temecula and beyond since ${site.licensedSince}. DRE# ${site.dre}.`,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
-const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
 ---
 
 <!doctype html>
@@ -46,12 +45,13 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
     ></script>
   </head>
   <body class="antialiased">
-    <div class="bg-[var(--sage-deep)] text-white/90 text-[11px] sm:text-xs text-center px-4 py-2 tracking-[0.12em] uppercase">
-      Call or text <a class="underline font-medium hover:text-white" href={`tel:${phoneTel}`}>{site.phone}</a>
-      <span class="mx-1.5 opacity-50">·</span>
-      <span>{site.brokerage}</span>
-      <span class="mx-1.5 opacity-50">·</span>
-      <span>DRE# {site.dre}</span>
+    <div class="bg-[var(--sage-deep)] text-white text-center px-4 py-2.5">
+      <div class="font-serif text-sm sm:text-base tracking-wide text-white">
+        {site.nameWithCredentials}
+      </div>
+      <div class="mt-0.5 text-[10px] sm:text-[11px] text-white/90 tracking-[0.14em] uppercase">
+        Listing Agent <span class="mx-1 opacity-60">•</span> Broker Associate <span class="mx-1 opacity-60">•</span> {site.brokerage}
+      </div>
     </div>
     <slot />
     <Footer />
