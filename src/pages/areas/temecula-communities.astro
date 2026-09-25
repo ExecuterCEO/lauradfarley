@@ -4,6 +4,8 @@ import Navbar from '../../components/Navbar.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import site from '../../data/site.json';
 import communities from '../../data/temecula-communities.json';
+import events from '../../data/temecula-events.json';
+import boundary from '../../data/temecula-boundary.json';
 
 const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
 ---
@@ -46,6 +48,43 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
         ))}
       </ol>
     </div>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-6 pb-10" aria-labelledby="communities-map-heading">
+      <h2 id="communities-map-heading" class="font-serif text-3xl text-[var(--sage-ink)] mb-2">Temecula map</h2>
+      <p class="text-sm text-[var(--muted)] max-w-3xl mb-4 leading-relaxed">
+        Approximate city outline (OpenStreetMap) with neighborhood names in place. De Luz sits west of the city line.
+        Labels are for orientation, not lot lines or HOA boundaries. Click a name to jump to that community.
+      </p>
+      <div class="rounded-3xl overflow-hidden border border-[var(--line)] bg-white shadow-sm">
+        <div id="communities-map" class="w-full h-[520px] sm:h-[640px]" role="region" aria-label="Map of Temecula communities"></div>
+      </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-5 sm:px-6 pb-14" aria-labelledby="community-events-heading">
+      <h2 id="community-events-heading" class="font-serif text-3xl text-[var(--sage-ink)] mb-2">Community events</h2>
+      <p class="text-sm text-[var(--muted)] mb-6 leading-relaxed">
+        Dates and details change. Confirm on the organizer’s site before you plan around them.
+      </p>
+      <ul class="space-y-5">
+        {events.map((e) => (
+          <li class="rounded-2xl border border-[var(--line)] bg-white p-5">
+            <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] font-medium">{e.date}</div>
+            <h3 class="font-serif text-2xl text-[var(--sage-ink)] mt-1">{e.name}</h3>
+            <p class="text-sm text-[var(--muted)] mt-1">{e.where}</p>
+            <p class="text-[var(--muted)] mt-3 leading-relaxed">{e.blurb}</p>
+            <p class="mt-3 text-sm">
+              <a class="underline text-[var(--sage-deep)] font-medium" href={e.url} target="_blank" rel="noopener noreferrer">Official info</a>
+              {e.facebook && (
+                <span>
+                  <span class="mx-2 opacity-40">·</span>
+                  <a class="underline text-[var(--sage-deep)]" href={e.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+                </span>
+              )}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
 
     {communities.map((c, i) => (
       <article id={c.slug} class="border-t border-[var(--line)]">
@@ -94,4 +133,58 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
       </div>
     </section>
   </main>
+  <style is:global>
+    .community-map-label {
+      background: none !important;
+      border: none !important;
+    }
+    .community-map-label span {
+      color: #4a5e4e;
+      font-weight: 650;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      text-shadow: 0 0 6px #f6f7f2, 0 1px 0 #fff, 1px 1px 0 #fff;
+      font-family: Montserrat, system-ui, sans-serif;
+    }
+  </style>
+  <script define:vars={{ communities, boundary }}>
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    document.head.appendChild(link);
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.onload = () => {
+      const map = L.map('communities-map', { scrollWheelZoom: true }).setView([33.5, -117.12], 12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap',
+        maxZoom: 18,
+      }).addTo(map);
+      L.geoJSON(boundary, {
+        style: { color: '#4A5E4E', weight: 2, fillColor: '#9AAB97', fillOpacity: 0.14 },
+      }).addTo(map);
+      const bounds = [];
+      communities.forEach((c) => {
+        if (typeof c.lat !== 'number' || typeof c.lng !== 'number') return;
+        const icon = L.divIcon({
+          className: 'community-map-label',
+          html: `<span>${c.name}</span>`,
+          iconSize: [0, 0],
+          iconAnchor: [0, 0],
+        });
+        L.marker([c.lat, c.lng], { icon, zIndexOffset: 500 })
+          .addTo(map)
+          .on('click', () => {
+            const el = document.getElementById(c.slug);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        bounds.push([c.lat, c.lng]);
+      });
+      if (bounds.length >= 2) map.fitBounds(bounds, { padding: [36, 36], maxZoom: 13 });
+      setTimeout(() => map.invalidateSize(), 150);
+      window.addEventListener('resize', () => map.invalidateSize());
+    };
+    document.head.appendChild(script);
+  </script>
 </Layout>

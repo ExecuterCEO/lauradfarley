@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Wine Country Run (Temecula Half Marathon, 10K, 5K & Kids Run)",
+    "date": "November 8, 2026",
+    "where": "Wilson Creek Winery & Vineyards",
+    "blurb": "Half marathon, 10K, 5K, and kids run through Temecula wine country, start and finish at Wilson Creek. Confirm times and registration on the official race site.",
+    "url": "https://www.temeculahalf.com/",
+    "facebook": "https://www.facebook.com/temeculahalf"
+  },
+  {
+    "name": "De Portola Wine Trail Harvest Celebration",
+    "date": "November 8, 2026",
+    "where": "De Portola Road wineries",
+    "blurb": "A trail-wide harvest day among De Portola tasting rooms (small bites and wine). Same date as the Wine Country Run, so check traffic and parking if you are doing both.",
+    "url": "https://deportolawinetrail.com/events/"
+  },
+  {
+    "name": "Peltzer Pumpkin Farm & Harvest Festival",
+    "date": "Through October 31, 2026",
+    "where": "Peltzer Farms, Temecula",
+    "blurb": "Seasonal pumpkin farm and harvest activities. Hours and tickets change; confirm on the farm site before you drive.",
+    "url": "https://www.peltzerfarms.com/"
+  },
+  {
+    "name": "Temecula Chilled",
+    "date": "December 2026",
+    "where": "Old Town Temecula",
+    "blurb": "Old Town winter program (ice and holiday programming). Dates and hours are posted by Visit Temecula Valley each season.",
+    "url": "https://www.visittemeculavalley.com/temecula-chilled/"
+  },
+  {
+    "name": "Holiday Taste of Old Town",
+    "date": "December 3, 2026",
+    "where": "Old Town Temecula",
+    "blurb": "Holiday tasting walk in Old Town. Confirm tickets and participating restaurants with Old Town Temecula.",
+    "url": "https://oldtowntemecula.org/events-tickets/"
+  },
+  {
+    "name": "Santa's Electric Light Parade",
+    "date": "December 5, 2026",
+    "where": "Old Town Temecula",
+    "blurb": "Evening holiday parade. Street closures affect Old Town access; check the city or Old Town listing the week of the event.",
+    "url": "https://www.visittemeculavalley.com/events/"
+  }
+]
