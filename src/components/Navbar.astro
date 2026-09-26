@@ -1,7 +1,7 @@
 ---
 import site from '../data/site.json';
 
-const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
+const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
 
 const links = [
   { href: '/', label: 'Home' },
@@ -13,16 +13,14 @@ const links = [
 ];
 ---
 
-<nav class="bg-[color:var(--ivory)]/95 backdrop-blur-md border-b border-[color:var(--line)] sticky top-0 z-50" id="site-nav">
+<nav class="bg-[color:var(--ivory)]/95 backdrop-blur-md border-b border-[color:var(--line)] sticky top-0 z-[80]" id="site-nav">
   <div class="max-w-6xl mx-auto px-5 sm:px-6 min-h-[4.75rem] py-3 flex items-center justify-between gap-3">
-    <a href="/" class="flex items-center gap-3 min-w-0 flex-1 group">
-      <div class="min-w-0 text-left">
-        <div class="font-serif text-lg sm:text-2xl text-[var(--sage-ink)] tracking-[0.04em] leading-tight">
-          {site.nameWithCredentials}
-        </div>
-        <div class="text-[9px] sm:text-[10px] text-[var(--sage)] mt-1 tracking-[0.12em] uppercase font-medium leading-snug">
-          Listing Agent <span class="opacity-50">•</span> Broker Associate <span class="opacity-50">•</span> {site.brokerage}
-        </div>
+    <a href="/" class="min-w-0 shrink text-left">
+      <div class="font-serif text-lg sm:text-2xl text-[var(--sage-ink)] tracking-[0.04em] leading-tight">
+        {site.nameWithCredentials}
+      </div>
+      <div class="text-[9px] sm:text-[10px] text-[var(--sage)] mt-1 tracking-[0.12em] uppercase font-medium leading-snug">
+        Listing Agent <span class="opacity-50">•</span> Broker Associate <span class="opacity-50">•</span> {site.brokerage}
       </div>
     </a>
 
@@ -41,63 +39,44 @@ const links = [
       </a>
     </div>
 
-    <button
-      type="button"
-      id="mobile-menu-btn"
-      class="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-1 rounded-full text-[var(--sage-ink)] hover:bg-[var(--ivory-deep)]"
-      aria-label="Open menu"
-      aria-controls="mobile-menu"
-      aria-expanded="false"
-    >
-      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16" />
-      </svg>
-      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
-
-  <div id="mobile-menu" class="lg:hidden hidden border-t border-[var(--line)] bg-[var(--ivory)] shadow-lg">
-    <div class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
-      {links.map((l) => (
-        <a href={l.href} class="mobile-nav-link block px-3 py-3 rounded-xl text-sm font-medium tracking-[0.14em] uppercase text-[var(--sage-ink)] hover:bg-white">
-          {l.label}
+    <details class="lg:hidden relative">
+      <summary
+        class="list-none inline-flex items-center justify-center w-11 h-11 -mr-1 rounded-full text-[var(--sage-ink)] hover:bg-[var(--ivory-deep)] cursor-pointer select-none [&::-webkit-details-marker]:hidden"
+        aria-label="Open menu"
+      >
+        <span class="sr-only">Menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 details-open:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden details-open:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </summary>
+      <div class="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] rounded-2xl border border-[var(--line)] bg-[var(--ivory)] shadow-lg py-2 z-[90]">
+        {links.map((l) => (
+          <a href={l.href} class="block px-4 py-3 text-sm font-medium tracking-[0.14em] uppercase text-[var(--sage-ink)] hover:bg-white">
+            {l.label}
+          </a>
+        ))}
+        <a href={`tel:${phoneTel}`} class="block px-4 py-3 text-sm font-medium text-[var(--sage-ink)] hover:bg-white">
+          Call {site.phone}
         </a>
-      ))}
-      <a href={`tel:${phoneTel}`} class="mobile-nav-link block px-3 py-3 rounded-xl text-sm font-medium text-[var(--sage-ink)]">
-        Call {site.phone}
-      </a>
-      <a href="/sell#valuation" class="mobile-nav-link mt-2 block text-center btn-primary">
-        Free home value
-      </a>
-    </div>
+        <a href="/sell#valuation" class="block mx-3 my-2 text-center btn-primary">
+          Free home value
+        </a>
+      </div>
+    </details>
   </div>
 </nav>
 
-<script>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('icon-open');
-  const iconClose = document.getElementById('icon-close');
-
-  function setOpen(open: boolean) {
-    if (!btn || !menu || !iconOpen || !iconClose) return;
-    menu.classList.toggle('hidden', !open);
-    iconOpen.classList.toggle('hidden', open);
-    iconClose.classList.toggle('hidden', !open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+<style>
+  details[open] .details-open\:hidden {
+    display: none;
   }
-
-  btn?.addEventListener('click', () => {
-    setOpen(btn.getAttribute('aria-expanded') !== 'true');
-  });
-  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
-  });
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1024) setOpen(false);
-  });
-</script>
+  details[open] .details-open\:block {
+    display: block;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
