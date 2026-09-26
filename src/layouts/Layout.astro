@@ -5,13 +5,16 @@ import site from '../data/site.json';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
 const {
   title,
   description = `${site.name} — ${site.title} with ${site.brokerage}. Helping buyers and sellers in Temecula and beyond since ${site.licensedSince}. DRE# ${site.dre}.`,
+  ogImage,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
+const ogImageUrl = new URL(ogImage || site.headshot, site.siteUrl).toString();
 ---
 
 <!doctype html>
@@ -27,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(site.headshot, site.siteUrl).toString()} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta name="theme-color" content="#4A5E4E" />
     <meta name="google-adsense-account" content="ca-pub-2494978762737398" />
     <title>{title} | {site.name}</title>
