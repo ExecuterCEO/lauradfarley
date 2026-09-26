@@ -15,8 +15,8 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
   <main class="bg-[var(--linen)]">
     <div class="max-w-5xl mx-auto px-5 sm:px-6 py-14">
       <div class="grid lg:grid-cols-5 gap-12 items-start">
-        <div class="lg:col-span-2 order-2 lg:order-1">
-          <div class="rounded-3xl overflow-hidden border border-[var(--taupe)] shadow-lg bg-[var(--alabaster)] max-w-xs mx-auto lg:max-w-none">
+        <div class="lg:col-span-2">
+          <div class="rounded-3xl overflow-hidden border border-[var(--taupe)] shadow-lg bg-[var(--alabaster)]">
             <img
               src={site.headshot}
               alt={site.nameWithCredentials}
@@ -35,7 +35,7 @@ const phoneTel = `+1${site.phone.replace(/\D/g, '')}`;
           </div>
         </div>
 
-        <div class="lg:col-span-3 order-1 lg:order-2">
+        <div class="lg:col-span-3">
           <h1 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mb-2">About Laura</h1>
           <p class="text-[var(--sage-deep)] text-lg mb-6">{site.nameWithCredentials}</p>
 
