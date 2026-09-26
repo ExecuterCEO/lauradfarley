@@ -7,6 +7,15 @@ import communities from '../../data/temecula-communities.json';
 import events from '../../data/temecula-events.json';
 import boundary from '../../data/temecula-boundary.json';
 
+function addDays(iso: string, n: number) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  dt.setUTCDate(dt.getUTCDate() + n);
+  return dt.toISOString().slice(0, 10);
+}
+const todayPt = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+const liveEvents = events.filter((e) => !('end' in e) || !e.end || todayPt <= addDays(e.end, 3));
+
 const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
 ---
 
@@ -68,7 +77,7 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
         <a class="underline text-[var(--sage-deep)]" href="/temecula-seasonal-events">Halloween, Thanksgiving, and holiday events</a>.
       </p>
       <ul class="space-y-5">
-        {events.map((e) => (
+        {liveEvents.map((e) => (
           <li class="rounded-2xl border border-[var(--line)] bg-white p-5">
             <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] font-medium">{e.date}</div>
             <h3 class="font-serif text-2xl text-[var(--sage-ink)] mt-1">{e.name}</h3>
