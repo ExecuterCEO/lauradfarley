@@ -7,14 +7,9 @@ import communities from '../../data/temecula-communities.json';
 import events from '../../data/temecula-events.json';
 import boundary from '../../data/temecula-boundary.json';
 
-function addDays(iso: string, n: number) {
-  const [y, m, d] = iso.split('-').map(Number);
-  const dt = new Date(Date.UTC(y, m - 1, d));
-  dt.setUTCDate(dt.getUTCDate() + n);
-  return dt.toISOString().slice(0, 10);
-}
 const todayPt = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
-const liveEvents = events.filter((e) => !('end' in e) || !e.end || todayPt <= addDays(e.end, 3));
+const upcomingEvents = events.filter((e) => !e.end || todayPt <= e.end);
+const pastEvents = events.filter((e) => e.end && todayPt > e.end).slice().reverse();
 
 const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
 ---
@@ -70,15 +65,14 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
     </section>
 
     <section class="max-w-3xl mx-auto px-5 sm:px-6 pb-14" aria-labelledby="community-events-heading">
-      <h2 id="community-events-heading" class="font-serif text-3xl text-[var(--sage-ink)] mb-2">Community events</h2>
+      <h2 id="community-events-heading" class="font-serif text-3xl text-[var(--sage-ink)] mb-2">Upcoming events</h2>
       <p class="text-sm text-[var(--muted)] mb-6 leading-relaxed">
-        Dates and details change. Confirm on the organizer’s site before you plan around them.
-        Longer write-up:
+        Dated listings stay on this page after they happen — they move to Past events below. Season write-ups stay up all year:
         <a class="underline text-[var(--sage-deep)]" href="/temecula-seasonal-events">Halloween, Thanksgiving, and holiday events</a>.
       </p>
-      <ul class="space-y-5">
-        {liveEvents.map((e) => (
-          <li class="rounded-2xl border border-[var(--line)] bg-white p-5">
+      <ul id="upcoming-events" class="space-y-5">
+        {upcomingEvents.map((e) => (
+          <li class="event-card rounded-2xl border border-[var(--line)] bg-white p-5" data-end={e.end || ''}>
             <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] font-medium">{e.date}</div>
             <h3 class="font-serif text-2xl text-[var(--sage-ink)] mt-1">{e.name}</h3>
             <p class="text-sm text-[var(--muted)] mt-1">{e.where}</p>
@@ -95,6 +89,27 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
           </li>
         ))}
       </ul>
+      <p id="upcoming-empty" class:list={['text-sm text-[var(--muted)] mt-4', upcomingEvents.length > 0 && 'hidden']}>
+        No dated events on the upcoming list right now.
+      </p>
+
+      <div id="past-events-wrap" class:list={['mt-12', pastEvents.length === 0 && 'hidden']}>
+        <h2 class="font-serif text-3xl text-[var(--sage-ink)] mb-2">Past events</h2>
+        <p class="text-sm text-[var(--muted)] mb-6">Kept for reference. Next year’s dates will differ — confirm with the organizer.</p>
+        <ul id="past-events" class="space-y-5">
+          {pastEvents.map((e) => (
+            <li class="event-card rounded-2xl border border-[var(--line)] bg-white p-5 opacity-90" data-end={e.end || ''}>
+              <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] font-medium">{e.date}</div>
+              <h3 class="font-serif text-2xl text-[var(--sage-ink)] mt-1">{e.name}</h3>
+              <p class="text-sm text-[var(--muted)] mt-1">{e.where}</p>
+              <p class="text-[var(--muted)] mt-3 leading-relaxed">{e.blurb}</p>
+              <p class="mt-3 text-sm">
+                <a class="underline text-[var(--sage-deep)] font-medium" href={e.url} target="_blank" rel="noopener noreferrer">Official info</a>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
 
     {communities.map((c, i) => (
@@ -197,5 +212,20 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
       window.addEventListener('resize', () => map.invalidateSize());
     };
     document.head.appendChild(script);
+  </script>
+  <script>
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+    const upcoming = document.getElementById('upcoming-events');
+    const past = document.getElementById('past-events');
+    const wrap = document.getElementById('past-events-wrap');
+    const empty = document.getElementById('upcoming-empty');
+    if (upcoming && past && wrap) {
+      document.querySelectorAll('.event-card').forEach((card) => {
+        const end = card.getAttribute('data-end');
+        if (end && today > end) past.appendChild(card);
+      });
+      wrap.classList.toggle('hidden', past.children.length === 0);
+      if (empty) empty.classList.toggle('hidden', upcoming.querySelectorAll('.event-card').length > 0);
+    }
   </script>
 </Layout>
