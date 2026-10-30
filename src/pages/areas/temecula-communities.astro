@@ -119,6 +119,9 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
             {String(i + 1).padStart(2, '0')} · {c.tag}
           </p>
           <h2 class="font-serif text-3xl sm:text-4xl text-[var(--sage-ink)] mt-2">{c.name}</h2>
+          {c.kicker && (
+            <p class="mt-3 font-serif text-2xl text-[var(--sage-ink)] leading-snug">{c.kicker}</p>
+          )}
           <img
             src={c.image}
             alt={c.imageAlt}
@@ -128,7 +131,11 @@ const phoneTel = `+1${site.phone.replace(/\\D/g, '')}`;
           />
           <div class="mt-8 space-y-4 text-[var(--muted)] leading-relaxed">
             {c.body.map((p) => (
-              <p>{p}</p>
+              p.startsWith('## ') ? (
+                <h3 class="font-serif text-2xl text-[var(--sage-ink)] pt-4">{p.slice(3)}</h3>
+              ) : (
+                <p>{p}</p>
+              )
             ))}
           </div>
         </div>

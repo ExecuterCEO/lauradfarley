@@ -53,7 +53,7 @@ for (const [file, href, title] of staticPages) {
     text += ` ${site.nameWithCredentials} ${site.title} ${site.brokerage} ${site.dre} ${site.phone} ${site.email} ${site.markets.join(' ')} ${site.primaryTagline}`;
   }
   if (href === '/areas/temecula-communities/') {
-    text += ` ${communities.map((c) => `${c.name} ${c.tag} ${(c.body || []).join(' ')}`).join(' ')}`;
+    text += ` ${communities.map((c) => `${c.name} ${c.tag} ${c.kicker || ''} ${(c.body || []).join(' ')}`).join(' ')}`;
     text += ` ${events.map((e) => `${e.name} ${e.date} ${e.where} ${e.blurb}`).join(' ')}`;
   }
   if (href === '/temecula-seasonal-events/') {
@@ -74,7 +74,7 @@ for (const area of areas) {
 }
 
 for (const community of communities) {
-  const text = `${community.name} ${community.tag} ${(community.body || []).join(' ')}`;
+  const text = `${community.name} ${community.tag} ${community.kicker || ''} ${(community.body || []).join(' ')}`;
   entries.push({
     title: community.name,
     href: `/areas/temecula-communities/#${community.slug}`,
