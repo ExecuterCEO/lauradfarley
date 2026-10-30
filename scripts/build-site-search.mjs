@@ -96,7 +96,11 @@ for (const event of events) {
 }
 
 for (const post of posts) {
-  const text = `${post.title || ''} ${post.summary || ''} ${post.keywords || ''}`;
+  let pageText = '';
+  const slug = String(post.href || '').replace(/^\/blog\//, '').replace(/\/$/, '');
+  const pagePath = slug ? path.join(root, 'src/pages/blog', `${slug}.astro`) : '';
+  if (pagePath && fs.existsSync(pagePath)) pageText = strip(fs.readFileSync(pagePath, 'utf8'));
+  const text = `${post.title || ''} ${post.summary || ''} ${post.keywords || ''} ${pageText}`;
   if (!post.href || !post.title) continue;
   entries.push({
     title: post.title,
