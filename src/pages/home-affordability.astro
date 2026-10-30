@@ -72,7 +72,8 @@ import ArticleContact from '../components/ArticleContact.astro';
         <input id="other-assess" inputmode="decimal" class="calc-input" placeholder="0" />
         <label class="block text-sm font-medium text-[#2B322C]" for="pmi">Mortgage insurance, per month</label>
         <input id="pmi" inputmode="decimal" class="calc-input" placeholder="0" />
-        <p class="text-sm text-[#2B322C]">If the down payment is under 20%, a lender may add mortgage insurance. Enter that amount if you have it. This box does not guess it.</p>
+        <p class="text-sm text-[#2B322C]">If the down payment is under 20%, a lender may add mortgage insurance. Enter that amount if you have it. This box does not guess it. At 100% down, mortgage insurance is left out.</p>
+        <p class="text-sm text-[#2B322C]">100% is a cash purchase. The result still includes the income needed to carry taxes, insurance, HOA, and other dues, with no loan payment.</p>
 
         <label class="block text-sm font-medium text-[#2B322C]" for="debts">Other monthly debt payments</label>
         <input id="debts" inputmode="decimal" class="calc-input" placeholder="Car, student loans, cards" />
@@ -91,7 +92,7 @@ import ArticleContact from '../components/ArticleContact.astro';
     </p>
     <ArticleContact line="Want these numbers checked against a specific home? Contact me." />
   </main>
-  <script is:inline src="/home-affordability.js"></script>
+  <script is:inline src="/home-affordability.js?v=2"></script>
 </Layout>
 
 <style>
