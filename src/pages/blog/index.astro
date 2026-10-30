@@ -17,9 +17,10 @@ const published = [...posts].sort((a, b) => String(b.date).localeCompare(String(
   <main class="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-16">
     <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium">From the desk</p>
     <h1 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mt-3">Blog</h1>
-    <p class="mt-5 text-lg text-[var(--muted)] leading-relaxed">
-      These are notes on selling, buying, and the neighborhoods I work in.
-      Nothing is published here yet.
+    <p class="mt-5 text-lg text-[#2B322C] leading-relaxed">
+      {published.length === 0
+        ? 'These are notes on selling, buying, and the neighborhoods I work in. Nothing is published here yet.'
+        : 'Notes on selling, buying, and the neighborhoods I work in.'}
     </p>
 
     {published.length > 0 ? (

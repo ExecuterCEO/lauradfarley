@@ -50,8 +50,8 @@
   {
     "title": "Blog",
     "href": "/blog/",
-    "text": "From the desk Blog These are notes on selling, buying, and the neighborhoods I work in. Nothing is published here yet. class=\"block rounded-2xl border border-[var(--line)] bg-white px-5 py-5 hover:border-[var(--sage)]\"> } ))} ) : ( The first articles are not up yet. Useful pages already on the site: Temecula communities , 1031 exchange , and seasonal events . )}",
-    "blurb": "From the desk Blog These are notes on selling, buying, and the neighborhoods I work in. Nothing is published here yet. class=\"block rounded-2xl border border-[var(--line)] bg-wh…"
+    "text": "From the desk Blog class=\"block rounded-2xl border border-[var(--line)] bg-white px-5 py-5 hover:border-[var(--sage)]\"> } ))} ) : ( The first articles are not up yet. Useful pages already on the site: Temecula communities , 1031 exchange , and seasonal events . )}",
+    "blurb": "From the desk Blog class=\"block rounded-2xl border border-[var(--line)] bg-white px-5 py-5 hover:border-[var(--sage)]\"> } ))} ) : ( The first articles are not up yet. Useful pag…"
   },
   {
     "title": "Contact",
