@@ -36,6 +36,7 @@ const staticPages = [
   ['src/pages/index.astro', '/', 'Home'],
   ['src/pages/sell.astro', '/sell/', 'Sell your home'],
   ['src/pages/buy.astro', '/buy/', 'Buy a home'],
+  ['src/pages/home-affordability.astro', '/home-affordability/', 'Home affordability calculator'],
   ['src/pages/areas/index.astro', '/areas/', 'Areas served'],
   ['src/pages/areas/temecula-communities.astro', '/areas/temecula-communities/', 'Top Temecula communities'],
   ['src/pages/1031-exchange.astro', '/1031-exchange/', '1031 exchange'],

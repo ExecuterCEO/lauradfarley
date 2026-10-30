@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ArticleContact from '../components/ArticleContact.astro';
+---
+
+<Layout
+  title="Home Affordability Calculator"
+  description="Estimate a Temecula purchase price or the income a price needs. Enter your own taxes, HOA, Mello-Roos, and rate. This is a planning figure, not a loan approval."
+>
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-16">
+    <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium">Buyers</p>
+    <h1 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mt-3 leading-tight">How much home, or how much income?</h1>
+    <p class="mt-5 text-lg text-[#2B322C] leading-relaxed">
+      Use one calculator. Switch the question. Taxes, HOA dues, and Mello-Roos are different for each home, so those boxes start empty.
+    </p>
+
+    <div id="calculator" class="mt-8 rounded-3xl border border-[var(--line)] bg-white p-5 sm:p-7">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="group" aria-label="Calculator question">
+        <button id="mode-afford" type="button" class="calc-on" aria-pressed="true">How much home can I afford?</button>
+        <button id="mode-income" type="button" class="calc-off" aria-pressed="false">What income does this price need?</button>
+      </div>
+
+      <div id="income-fields" class="mt-6 grid gap-4">
+        <label class="block text-sm font-medium text-[#2B322C]" for="income">Gross annual income</label>
+        <input id="income" inputmode="decimal" class="calc-input" placeholder="120000" />
+      </div>
+      <div id="price-fields" class="mt-6 grid gap-4" hidden>
+        <label class="block text-sm font-medium text-[#2B322C]" for="price">Purchase price</label>
+        <input id="price" inputmode="decimal" class="calc-input" placeholder="650000" />
+      </div>
+
+      <div class="mt-6 grid gap-4">
+        <p class="text-sm font-medium text-[#2B322C]">Down payment</p>
+        <div class="grid grid-cols-2 gap-2">
+          <button id="down-percent-btn" type="button" class="calc-on" aria-pressed="true">Percent</button>
+          <button id="down-dollars" type="button" class="calc-off" aria-pressed="false">Dollar amount</button>
+        </div>
+        <div id="down-percent-wrap">
+          <label class="block text-sm font-medium text-[#2B322C]" for="down-percent">Down payment percent</label>
+          <input id="down-percent" inputmode="decimal" class="calc-input mt-1" value="20" />
+        </div>
+        <div id="down-dollars-wrap" hidden>
+          <label class="block text-sm font-medium text-[#2B322C]" for="down-dollars">Down payment dollars</label>
+          <input id="down-dollars" inputmode="decimal" class="calc-input mt-1" placeholder="80000" />
+        </div>
+
+        <label class="block text-sm font-medium text-[#2B322C]" for="rate">Interest rate, percent</label>
+        <input id="rate" inputmode="decimal" class="calc-input" value="7.24" />
+        <p class="text-sm text-[#2B322C]">Example only. Freddie Mac’s average 30-year fixed rate was 7.24% on October 29, 2026, for excellent credit and 20% down. It is not your rate.</p>
+
+        <label class="block text-sm font-medium text-[#2B322C]" for="years">Loan term</label>
+        <select id="years" class="calc-input">
+          <option value="30" selected>30 years</option>
+          <option value="15">15 years</option>
+        </select>
+
+        <label class="block text-sm font-medium text-[#2B322C]" for="tax-annual">Annual property tax, dollars</label>
+        <input id="tax-annual" inputmode="decimal" class="calc-input" placeholder="From the tax bill, if you have it" />
+        <label class="block text-sm font-medium text-[#2B322C]" for="tax-percent">Or property tax as a percent of price</label>
+        <input id="tax-percent" inputmode="decimal" class="calc-input" placeholder="Leave blank if you entered the bill" />
+        <p class="text-sm text-[#2B322C]">If you enter both, the dollar bill is used. Temecula is not one tax rate. Mello-Roos and other assessments sit in the boxes below, not inside this percent.</p>
+
+        <label class="block text-sm font-medium text-[#2B322C]" for="insurance">Homeowners insurance, per year</label>
+        <input id="insurance" inputmode="decimal" class="calc-input" placeholder="0" />
+        <label class="block text-sm font-medium text-[#2B322C]" for="hoa">HOA dues, per month</label>
+        <input id="hoa" inputmode="decimal" class="calc-input" placeholder="0" />
+        <label class="block text-sm font-medium text-[#2B322C]" for="mello">Mello-Roos or other special tax, per month</label>
+        <input id="mello" inputmode="decimal" class="calc-input" placeholder="0" />
+        <label class="block text-sm font-medium text-[#2B322C]" for="other-assess">Other assessments, per month</label>
+        <input id="other-assess" inputmode="decimal" class="calc-input" placeholder="0" />
+        <label class="block text-sm font-medium text-[#2B322C]" for="pmi">Mortgage insurance, per month</label>
+        <input id="pmi" inputmode="decimal" class="calc-input" placeholder="0" />
+        <p class="text-sm text-[#2B322C]">If the down payment is under 20%, a lender may add mortgage insurance. Enter that amount if you have it. This box does not guess it.</p>
+
+        <label class="block text-sm font-medium text-[#2B322C]" for="debts">Other monthly debt payments</label>
+        <input id="debts" inputmode="decimal" class="calc-input" placeholder="Car, student loans, cards" />
+        <label class="block text-sm font-medium text-[#2B322C]" for="front">Housing share of gross income, percent</label>
+        <input id="front" inputmode="decimal" class="calc-input" value="28" />
+        <label class="block text-sm font-medium text-[#2B322C]" for="back">All debts share of gross income, percent</label>
+        <input id="back" inputmode="decimal" class="calc-input" value="36" />
+        <p class="text-sm text-[#2B322C]">28% and 36% are planning ratios, not a lender’s rule for you. VA and FHA loans can differ. Change these if a lender gave you different numbers.</p>
+      </div>
+
+      <div id="result" class="mt-8 rounded-2xl bg-[var(--ivory)] border border-[var(--line)] p-5 text-[#2B322C]"></div>
+    </div>
+
+    <p class="mt-6 text-sm text-[#2B322C] leading-relaxed">
+      This is a planning estimate. It is not a loan approval, a tax opinion, or a promise of what you will qualify for. A lender, the tax bill, and the HOA documents control the real numbers.
+    </p>
+    <ArticleContact line="Want these numbers checked against a specific home? Contact me." />
+  </main>
+  <script is:inline src="/home-affordability.js"></script>
+</Layout>
+
+<style>
+  .calc-input {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: white;
+    color: #2B322C;
+    font-size: 16px;
+    padding: 0.75rem 1rem;
+  }
+  .calc-on, .calc-off {
+    min-height: 48px;
+    border-radius: 0.75rem;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0.75rem 0.8rem;
+  }
+  .calc-on {
+    background: var(--sage-deep);
+    color: white;
+    border: 1px solid var(--sage-deep);
+  }
+  .calc-off {
+    background: white;
+    color: #2B322C;
+    border: 1px solid var(--line);
+  }
+</style>
