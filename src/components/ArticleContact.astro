@@ -1,0 +1,14 @@
+---
+interface Props {
+  line?: string;
+}
+
+const {
+  line = 'Buying, selling, or still deciding? Contact me. I will follow up personally.',
+} = Astro.props;
+---
+
+<aside class="my-8 rounded-2xl border border-[var(--line)] bg-white px-5 py-5">
+  <p class="text-[#2B322C] leading-relaxed">{line}</p>
+  <a class="btn-primary mt-4" href="/contact">Contact me →</a>
+</aside>
