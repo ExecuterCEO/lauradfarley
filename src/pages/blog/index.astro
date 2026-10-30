@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import posts from '../../data/blog.json';
+
+const published = [...posts].sort((a, b) => String(b.date).localeCompare(String(a.date)));
+---
+
+<Layout
+  title="Blog"
+  description="Notes on Temecula Valley, Orange County, and Hacienda Heights real estate from Laura D. Farley, MBA. Articles are added as they are written."
+  noindex={published.length === 0}
+>
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-16">
+    <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium">From the desk</p>
+    <h1 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mt-3">Blog</h1>
+    <p class="mt-5 text-lg text-[var(--muted)] leading-relaxed">
+      These are notes on selling, buying, and the neighborhoods I work in.
+      Nothing is published here yet.
+    </p>
+
+    {published.length > 0 ? (
+      <ul class="mt-10 space-y-4">
+        {published.map((post) => (
+          <li>
+            <a href={post.href} class="block rounded-2xl border border-[var(--line)] bg-white px-5 py-5 hover:border-[var(--sage)]">
+              <div class="text-[11px] tracking-[0.16em] uppercase text-[var(--sage)] font-medium">{post.date}</div>
+              <h2 class="font-serif text-2xl text-[var(--sage-ink)] mt-1">{post.title}</h2>
+              {post.summary && <p class="mt-2 text-[#2B322C] leading-relaxed">{post.summary}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="mt-8 rounded-2xl border border-[var(--line)] bg-white px-5 py-5 text-[#2B322C] leading-relaxed">
+        The first articles are not up yet. Useful pages already on the site:
+        <a class="underline" href="/areas/temecula-communities/">Temecula communities</a>,
+        <a class="underline" href="/1031-exchange/">1031 exchange</a>,
+        and
+        <a class="underline" href="/temecula-seasonal-events/">seasonal events</a>.
+      </p>
+    )}
+
+    <div class="mt-12">
+      <LeadForm
+        formName="blog-question"
+        heading="Ask a question"
+        subheading="Send a question and it comes to me by email. It is not posted on this page. I reply directly."
+        submitLabel="Send question"
+        intentDefault="general"
+      />
+    </div>
+  </main>
+</Layout>

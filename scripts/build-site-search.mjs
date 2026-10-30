@@ -30,6 +30,7 @@ const areas = JSON.parse(read('src/data/areas.json'));
 const communities = JSON.parse(read('src/data/temecula-communities.json'));
 const events = JSON.parse(read('src/data/temecula-events.json'));
 const site = JSON.parse(read('src/data/site.json'));
+const posts = JSON.parse(read('src/data/blog.json'));
 
 const staticPages = [
   ['src/pages/index.astro', '/', 'Home'],
@@ -40,6 +41,7 @@ const staticPages = [
   ['src/pages/1031-exchange.astro', '/1031-exchange/', '1031 exchange'],
   ['src/pages/temecula-seasonal-events.astro', '/temecula-seasonal-events/', 'Temecula seasonal events'],
   ['src/pages/about.astro', '/about/', 'About'],
+  ['src/pages/blog/index.astro', '/blog/', 'Blog'],
   ['src/pages/contact.astro', '/contact/', 'Contact'],
   ['src/pages/privacy.astro', '/privacy/', 'Privacy'],
   ['src/pages/terms.astro', '/terms/', 'Terms'],
@@ -90,6 +92,17 @@ for (const event of events) {
     href: '/areas/temecula-communities/#upcoming-events',
     text,
     blurb: blurb(text),
+  });
+}
+
+for (const post of posts) {
+  const text = `${post.title || ''} ${post.summary || ''} ${post.keywords || ''}`;
+  if (!post.href || !post.title) continue;
+  entries.push({
+    title: post.title,
+    href: post.href,
+    text,
+    blurb: blurb(post.summary || post.title),
   });
 }
 
