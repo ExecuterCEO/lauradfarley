@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import LeadForm from '../../components/LeadForm.astro';
+import Comments from '../../components/Comments.astro';
 import posts from '../../data/blog.json';
 
 const published = [...posts].sort((a, b) => String(b.date).localeCompare(String(a.date)));
@@ -42,6 +43,8 @@ const published = [...posts].sort((a, b) => String(b.date).localeCompare(String(
         <a class="underline" href="/temecula-seasonal-events/">seasonal events</a>.
       </p>
     )}
+
+    <Comments pageId="blog" />
 
     <div class="mt-12">
       <LeadForm

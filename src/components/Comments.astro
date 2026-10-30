@@ -1,0 +1,55 @@
+---
+import site from '../data/site.json';
+import comments from '../data/comments.json';
+
+interface Props {
+  pageId: string;
+}
+
+const { pageId } = Astro.props;
+const pageComments = comments.filter((c) => c.pageId === pageId && c.public !== false);
+const formAction = `https://formsubmit.co/${site.email}`;
+const thanksUrl = new URL('/thank-you/', site.siteUrl).toString();
+---
+
+<section class="mt-12" id="comments">
+  <h2 class="font-serif text-3xl text-[var(--sage-ink)]">Comments</h2>
+  <p class="mt-3 text-[#2B322C] leading-relaxed">
+    A comment is emailed to me before it appears here. Once it is on the page, it is public.
+    Tell me the number if one should come down, and I will remove it.
+  </p>
+
+  {pageComments.length === 0 ? (
+    <p class="mt-6 text-[#2B322C]">No comments on this page yet.</p>
+  ) : (
+    <ol class="mt-6 space-y-4">
+      {pageComments.map((c) => (
+        <li class="rounded-2xl border border-[var(--line)] bg-white px-5 py-4">
+          <div class="text-sm text-[#2B322C]">#{c.id} · {c.name}</div>
+          <p class="mt-2 text-[#2B322C] leading-relaxed">{c.message}</p>
+        </li>
+      ))}
+    </ol>
+  )}
+
+  <form method="POST" action={formAction} class="mt-8 space-y-4 rounded-2xl border border-[var(--line)] bg-white p-5 sm:p-6">
+    <input type="hidden" name="_subject" value={`Blog comment (${pageId})`} />
+    <input type="hidden" name="_next" value={thanksUrl} />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input type="hidden" name="page" value={pageId} />
+    <div>
+      <label class="block text-sm font-medium text-[#2B322C] mb-1" for={`${pageId}-comment-name`}>Name</label>
+      <input id={`${pageId}-comment-name`} name="name" required class="w-full rounded-xl border border-[var(--line)] bg-white px-4 py-3 text-base text-[#2B322C]" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-[#2B322C] mb-1" for={`${pageId}-comment-message`}>Comment</label>
+      <textarea id={`${pageId}-comment-message`} name="message" required rows="4" class="w-full rounded-xl border border-[var(--line)] bg-white px-4 py-3 text-base text-[#2B322C]"></textarea>
+    </div>
+    <button type="submit" class="btn-primary">Send comment</button>
+    <p class="text-sm text-[#2B322C]">
+      Visitor comments are not my advice. I may remove one that is inappropriate.
+    </p>
+  </form>
+</section>
