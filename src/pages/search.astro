@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import entries from '../data/site-search.json';
+---
+
+<Layout
+  title="Search"
+  description="Search the words already published on Laura D. Farley’s real estate site: communities, areas, selling, buying, and seasonal notes. Not a listing search."
+>
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-5 sm:px-6 py-12 sm:py-16">
+    <p class="text-[11px] tracking-[0.22em] uppercase text-[var(--sage)] font-medium">Site search</p>
+    <h1 class="font-serif text-4xl sm:text-5xl text-[var(--sage-ink)] mt-3">Search this site</h1>
+    <p class="mt-4 text-lg text-[var(--muted)] leading-relaxed">
+      This finds words already written here: communities, areas, selling, buying, and local notes.
+      It does not search active listings.
+    </p>
+
+    <form action="/search/" method="get" role="search" class="mt-8 flex flex-col sm:flex-row gap-3">
+      <label class="sr-only" for="site-search-q">Search the site</label>
+      <input
+        id="site-search-q"
+        name="q"
+        type="search"
+        enterkeyhint="search"
+        placeholder="Try Chardonnay Hills, 1031, or sell"
+        class="w-full rounded-full border border-[var(--line)] bg-white px-5 py-3 text-base text-[#2B322C] placeholder:text-[#5c665f]"
+      />
+      <button type="submit" class="btn-primary shrink-0">Search</button>
+    </form>
+
+    <div id="search-results" class="mt-10 space-y-4 text-[#2B322C]"></div>
+  </main>
+</Layout>
+
+<script define:vars={{ entries }}>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var q = (params.get('q') || '').trim();
+    var input = document.getElementById('site-search-q');
+    var out = document.getElementById('search-results');
+    if (input && q) input.value = q;
+    if (!out) return;
+    if (!q) {
+      out.textContent = 'Type a word from the site, then press Search.';
+      return;
+    }
+    var tokens = q.toLowerCase().split(/[^a-z0-9]+/).filter(function (t) { return t.length >= 2; });
+    if (!tokens.length) {
+      out.textContent = 'Try a longer word.';
+      return;
+    }
+    function hay(entry) {
+      return (entry.title + ' ' + entry.text).toLowerCase();
+    }
+    function score(entry) {
+      var title = entry.title.toLowerCase();
+      var n = 0;
+      tokens.forEach(function (t) {
+        if (title.indexOf(t) !== -1) n += 5;
+      });
+      return n;
+    }
+    var hits = entries.filter(function (entry) {
+      var blob = hay(entry);
+      return tokens.every(function (t) { return blob.indexOf(t) !== -1; });
+    });
+    hits.sort(function (a, b) { return score(b) - score(a); });
+    if (!hits.length) {
+      out.textContent = 'No page uses those words. Try a community name, an area, or a shorter word.';
+      return;
+    }
+    out.textContent = '';
+    var note = document.createElement('p');
+    note.className = 'text-sm text-[#2B322C]';
+    note.textContent = hits.length + (hits.length === 1 ? ' match' : ' matches');
+    out.appendChild(note);
+    hits.slice(0, 24).forEach(function (entry) {
+      var a = document.createElement('a');
+      a.href = entry.href;
+      a.className = 'block rounded-2xl border border-[var(--line)] bg-white px-5 py-4 hover:border-[var(--sage)]';
+      var h = document.createElement('div');
+      h.className = 'font-serif text-2xl text-[#2B322C]';
+      h.textContent = entry.title;
+      var p = document.createElement('p');
+      p.className = 'mt-2 text-sm leading-relaxed text-[#2B322C]';
+      p.textContent = entry.blurb;
+      a.appendChild(h);
+      a.appendChild(p);
+      out.appendChild(a);
+    });
+  })();
+</script>
