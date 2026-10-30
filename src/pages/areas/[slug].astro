@@ -46,12 +46,20 @@ const { area } = Astro.props;
           Working with {site.name}, {site.title}, {site.brokerage}, DRE# {site.dre}.
         </p>
         {area.slug === 'temecula' && (
-          <a
-            href="/areas/temecula-communities"
-            class="inline-block mt-6 font-semibold text-[var(--sage-deep)] hover:underline"
-          >
-            Top Temecula communities →
-          </a>
+          <div class="mt-6 space-y-3">
+            <a
+              href="/areas/temecula-communities"
+              class="block font-semibold text-[var(--sage-deep)] hover:underline"
+            >
+              Top Temecula communities →
+            </a>
+            <a
+              href="/blog/living-in-temecula/"
+              class="block font-semibold text-[var(--sage-deep)] hover:underline"
+            >
+              What everyday life in Temecula is like →
+            </a>
+          </div>
         )}
       </div>
       <LeadForm
