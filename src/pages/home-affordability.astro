@@ -82,9 +82,10 @@ import ArticleContact from '../components/ArticleContact.astro';
         <label class="block text-sm font-medium text-[#2B322C]" for="back">All debts share of gross income, percent</label>
         <input id="back" inputmode="decimal" class="calc-input" value="36" />
         <p class="text-sm text-[#2B322C]">28% and 36% are planning ratios, not a lender’s rule for you. VA and FHA loans can differ. Change these if a lender gave you different numbers.</p>
+        <button id="calculate-btn" type="button" class="calc-on mt-2">Calculate</button>
       </div>
 
-      <div id="result" class="mt-8 rounded-2xl bg-[var(--ivory)] border border-[var(--line)] p-5 text-[#2B322C]"></div>
+      <div id="result" class="mt-8 rounded-2xl bg-[var(--ivory)] border border-[var(--line)] p-5 text-[#2B322C]">Enter the figures, then press Calculate.</div>
     </div>
 
     <p class="mt-6 text-sm text-[#2B322C] leading-relaxed">
@@ -92,7 +93,7 @@ import ArticleContact from '../components/ArticleContact.astro';
     </p>
     <ArticleContact line="Want these numbers checked against a specific home? Contact me." />
   </main>
-  <script is:inline src="/home-affordability.js?v=2"></script>
+  <script is:inline src="/home-affordability.js?v=3"></script>
 </Layout>
 
 <style>

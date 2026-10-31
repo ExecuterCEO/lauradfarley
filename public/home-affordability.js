@@ -186,6 +186,7 @@
       ['Estimated monthly housing', moneyExact(result.housing)],
     ].filter(Boolean);
     const list = rows.map(([k, v]) => `<div class="flex justify-between gap-4 border-t border-[var(--line)] py-2"><span>${k}</span><span class="font-medium">${v}</span></div>`).join('');
+    const warn = result.taxMissing ? '<p class="mt-3">Property tax is blank, so this estimate leaves taxes out. Add the bill or a percent before you rely on it.</p>' : '';
     const cashNote = result.cash
       ? '<p class="mt-3">Free and clear. There is no loan payment. The income figure is what it takes to carry the tax, insurance, HOA, Mello-Roos, and other dues.</p>'
       : '';
@@ -236,31 +237,24 @@
     setPressed($('mode-afford'), $('mode-income'));
     $('income-fields').hidden = false;
     $('price-fields').hidden = true;
-    calculate();
   });
   $('mode-income').addEventListener('click', () => {
     setPressed($('mode-income'), $('mode-afford'));
     $('income-fields').hidden = true;
     $('price-fields').hidden = false;
-    calculate();
   });
   $('down-percent-btn').addEventListener('click', () => {
     setPressed($('down-percent-btn'), $('down-dollars'));
     $('down-percent-wrap').hidden = false;
     $('down-dollars-wrap').hidden = true;
-    calculate();
   });
   $('down-dollars').addEventListener('click', () => {
     setPressed($('down-dollars'), $('down-percent-btn'));
     $('down-percent-wrap').hidden = true;
     $('down-dollars-wrap').hidden = false;
-    calculate();
   });
 
-  document.querySelectorAll('#calculator input, #calculator select').forEach((el) => {
-    el.addEventListener('input', calculate);
-  });
-  calculate();
+  $('calculate-btn').addEventListener('click', calculate);
 
   window.HomeAffordability = { paymentFactor, solveAfford, solveIncome, readShared };
 })();
