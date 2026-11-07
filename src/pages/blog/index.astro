@@ -5,7 +5,12 @@ import LeadForm from '../../components/LeadForm.astro';
 import Comments from '../../components/Comments.astro';
 import posts from '../../data/blog.json';
 
-const published = [...posts].sort((a, b) => String(b.date).localeCompare(String(a.date)));
+function posted(date) {
+  const time = Date.parse(date);
+  return Number.isNaN(time) ? 0 : time;
+}
+
+const published = [...posts].sort((a, b) => posted(b.date) - posted(a.date));
 ---
 
 <Layout
